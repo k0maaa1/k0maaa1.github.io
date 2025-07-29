@@ -1,11 +1,13 @@
 * {
-	margin: 0;
-	padding: 0;
+
+	font-family: 'Montserrat';
+	font-weight: 400;
 	box-sizing: border-box;
 }
 
 body {
-	font-family: 'Arial', sans-serif;
+	font-family: 'Montserrat';
+	font-weight: 400;
 	background: url('source/background.jpg') center center/cover no-repeat;
 	background-attachment: fixed;
 	color: white;
@@ -69,22 +71,7 @@ body::before {
 	transform: translateX(0);
 }
 
-/* Навигация */
-.navbar {
-	position: fixed;
-	font-family: "Montserrat", sans-serif;
-	font-weight: 400;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 20px 50px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	z-index: 1000;
-	background: transparent;
-	backdrop-filter: blur(10px);
-}
+
 
 .nav-left {
 	display: flex;
@@ -102,6 +89,12 @@ body::before {
 	opacity: 0.7;
 }
 
+.nav-right {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
 .nav-right a {
 	color: white;
 	text-decoration: none;
@@ -112,6 +105,260 @@ body::before {
 
 .nav-right a:hover {
 	opacity: 0.7;
+}
+
+/* Переключатель языка - выпадающий список */
+.language-switcher {
+	position: relative;
+	z-index: 1002;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-btn {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 16px;
+	font-weight: 300;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	border-radius: 6px;
+	transition: all 0.3s ease;
+	min-width: 90px;
+	white-space: nowrap;
+	position: relative;
+	overflow: hidden;
+	z-index: 1003;
+	pointer-events: auto;
+}
+
+.dropdown-btn:hover {
+	background: rgba(255, 255, 255, 0.1);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-btn.active {
+	background: rgba(255, 255, 255, 0.15);
+	transform: scale(1.02);
+}
+
+/* Анимация текста языка */
+.current-lang {
+	display: inline-block;
+	transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	position: relative;
+}
+
+.current-lang.changing {
+	transform: rotateY(90deg) scale(0.8);
+	opacity: 0;
+}
+
+/* Анимация стрелки */
+.dropdown-arrow {
+	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	pointer-events: none;
+}
+
+.dropdown-btn.active .dropdown-arrow {
+	transform: rotate(180deg) scale(1.1);
+}
+
+/* Анимация выпадающего меню */
+.dropdown-menu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background: rgba(0, 0, 0, 0.95);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	padding: 8px 0;
+	min-width: 140px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(15px);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-15px) scale(0.95);
+	transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	z-index: 1004;
+	pointer-events: none;
+}
+
+.dropdown-menu.show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0) scale(1);
+	pointer-events: auto;
+}
+
+/* Анимация элементов меню */
+.dropdown-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 16px;
+	color: white;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+	transform: translateX(-20px);
+	opacity: 0;
+	pointer-events: auto;
+}
+
+.dropdown-menu.show .dropdown-item {
+	transform: translateX(0);
+	opacity: 1;
+	transition-delay: calc(var(--item-index, 0) * 0.1s);
+}
+
+.dropdown-item:nth-child(1) { --item-index: 0; }
+.dropdown-item:nth-child(2) { --item-index: 1; }
+
+.dropdown-item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 100%;
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+	transition: width 0.3s ease;
+}
+
+.dropdown-item:hover::before {
+	width: 100%;
+}
+
+.dropdown-item:hover {
+	background: rgba(255, 255, 255, 0.1);
+	transform: translateX(4px);
+}
+
+.dropdown-item.active {
+	background: rgba(255, 255, 255, 0.15);
+	box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+.lang-code {
+	font-weight: 500;
+	font-size: 14px;
+	transition: all 0.3s ease;
+}
+
+.lang-name {
+	font-size: 13px;
+	opacity: 0.8;
+	transition: all 0.3s ease;
+}
+
+.dropdown-item:hover .lang-code {
+	color: #fff;
+	transform: scale(1.05);
+}
+
+.dropdown-item:hover .lang-name {
+	opacity: 1;
+	transform: translateX(2px);
+}
+
+/* Эффект пульсации при смене языка */
+@keyframes languageChange {
+	0% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+	}
+	50% {
+		transform: scale(1.05);
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+	}
+	100% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+.dropdown-btn.language-changing {
+	animation: languageChange 0.6s ease-out;
+}
+
+.dropdown-arrow {
+	transition: transform 0.3s ease;
+}
+
+.dropdown-btn.active .dropdown-arrow {
+	transform: rotate(180deg);
+}
+
+.dropdown-menu {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	background: #0d0d0d;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	padding: 0px 0;
+	min-width: 140px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(10px);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition: all 0.3s ease;
+	z-index: 1001;
+	
+}
+
+.dropdown-menu.show {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.dropdown-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 16px;
+	color: white;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+}
+
+.dropdown-item.active {
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 8px;
+}
+
+.lang-code {
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.lang-name {
+	display: flex;
+	font-size: 13px;
+	opacity: 0.8;
+	
+}
+
+.lang-separator {
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 14px;
 }
 
 /* Главный контент */
@@ -203,9 +450,6 @@ body::before {
 		width: 250px;
 	}
 
-	.agency-text {
-		font-size: 20px;
-	}
 
 	.nav-left {
 		flex-wrap: wrap;
@@ -259,13 +503,15 @@ body::before {
 /* Добавляем фон только при прокрутке */
 .navbar.scrolled {
 	background: transparent;
-	backdrop-filter: blur(10px);
+	
 	transition: background 0.3s ease;
 }
 
 /* Секция About Us */
 .about-section {
 	min-height: 100vh;
+	width: 100vw; /* Используем viewport width для полной ширины */
+	margin-left: calc(-50vw + 50%); /* Растягиваем на всю ширину */
 	padding: 100px 0;
 	background: rgba(0, 0, 0, 0.8);
 	backdrop-filter: blur(10px);
@@ -388,4 +634,148 @@ body::before {
 	.header-logo-svg {
 		width: 60px;
 	}
+}
+
+/* Анимации смены языка для текста */
+.language-transition {
+	transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Эффект исчезновения текста */
+.text-fade-out {
+	opacity: 0;
+	transform: translateY(-20px) scale(0.95);
+	filter: blur(3px);
+}
+
+/* Эффект появления текста */
+.text-fade-in {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+	filter: blur(0);
+}
+
+/* Анимация волны для текста */
+@keyframes textWave {
+	0% {
+		transform: translateY(0) rotateX(0deg);
+		opacity: 1;
+	}
+	50% {
+		transform: translateY(-15px) rotateX(90deg);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0) rotateX(0deg);
+		opacity: 1;
+	}
+}
+
+.text-wave {
+	animation: textWave 0.8s ease-in-out;
+}
+
+/* Эффект скольжения текста */
+@keyframes slideOut {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+}
+
+@keyframes slideIn {
+	0% {
+		transform: translateX(100px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.slide-out {
+	animation: slideOut 0.4s ease-in-out;
+}
+
+.slide-in {
+	animation: slideIn 0.4s ease-in-out;
+}
+
+/* Эффект поворота текста */
+@keyframes flipOut {
+	0% {
+		transform: rotateY(0deg);
+		opacity: 1;
+	}
+	100% {
+		transform: rotateY(90deg);
+		opacity: 0;
+	}
+}
+
+@keyframes flipIn {
+	0% {
+		transform: rotateY(-90deg);
+		opacity: 0;
+	}
+	100% {
+		transform: rotateY(0deg);
+		opacity: 1;
+	}
+}
+
+.flip-out {
+	animation: flipOut 0.3s ease-in-out;
+}
+
+.flip-in {
+	animation: flipIn 0.3s ease-in-out;
+}
+
+/* Эффект печатной машинки */
+@keyframes typewriter {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+.typewriter {
+	overflow: hidden;
+	white-space: nowrap;
+	border-right: 2px solid rgba(255, 255, 255, 0.7);
+	animation: typewriter 1s steps(40, end), blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+	from, to {
+		border-color: transparent;
+	}
+	50% {
+		border-color: rgba(255, 255, 255, 0.7);
+	}
+}
+
+/* Эффект свечения при смене */
+@keyframes glow {
+	0% {
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+	}
+	50% {
+		text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+	}
+	100% {
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+	}
+}
+
+.text-glow {
+	animation: glow 0.8s ease-in-out;
 }
