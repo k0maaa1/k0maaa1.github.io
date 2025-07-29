@@ -779,3 +779,138 @@ body::before {
 .text-glow {
 	animation: glow 0.8s ease-in-out;
 }
+
+/* Мобильное меню */
+.mobile-menu-toggle {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	padding: 10px;
+	z-index: 1005;
+	position: relative;
+}
+
+.mobile-menu-toggle span {
+	width: 25px;
+	height: 3px;
+	background: white;
+	margin: 3px 0;
+	transition: all 0.3s ease;
+	border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+	transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+	opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+	transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.95);
+	backdrop-filter: blur(20px);
+	z-index: 1004;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: translateX(-100%);
+	transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mobile-menu.active {
+	transform: translateX(0);
+}
+
+.mobile-menu-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	text-align: center;
+}
+
+.mobile-menu-content a {
+	color: white;
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: 300;
+	transition: all 0.3s ease;
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.mobile-menu.active .mobile-menu-content a {
+	opacity: 1;
+	transform: translateY(0);
+	transition-delay: calc(var(--item-index, 0) * 0.1s + 0.2s);
+}
+
+.mobile-menu-content a:nth-child(1) { --item-index: 0; }
+.mobile-menu-content a:nth-child(2) { --item-index: 1; }
+.mobile-menu-content a:nth-child(3) { --item-index: 2; }
+.mobile-menu-content a:nth-child(4) { --item-index: 3; }
+.mobile-menu-content a:nth-child(5) { --item-index: 4; }
+
+.mobile-menu-content a:hover {
+	color: #ccc;
+	transform: scale(1.1);
+}
+
+.mobile-language-switcher {
+	margin-top: 20px;
+	opacity: 0;
+	transform: translateY(30px);
+}
+
+.mobile-menu.active .mobile-language-switcher {
+	opacity: 1;
+	transform: translateY(0);
+	transition: all 0.3s ease;
+	transition-delay: 0.7s;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+	.mobile-menu-toggle {
+		display: flex;
+		margin-left: auto; /* Автоматически сдвигает вправо */
+	}
+	
+	.navbar {
+		display: flex;
+		align-items: center;
+		padding: 0 20px;
+	}
+	
+	.header-logo {
+		flex: 1;
+		display: flex;
+		justify-content: flex-start;
+	}
+	
+	.nav-left,
+	.nav-right {
+		display: none;
+	}
+}
+
+@media (max-width: 480px) {
+	.mobile-menu-content a {
+		font-size: 20px;
+	}
+	
+	.mobile-menu-content {
+		gap: 25px;
+	}
+}
