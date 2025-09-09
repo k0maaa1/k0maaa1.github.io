@@ -122,14 +122,17 @@ button, .btn {
 /* Header Styles */
 .header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 10px; /* Вместо margin-top */
+    left: 10px; /* Вместо margin-left */
+    right: 10px; /* Вместо margin-right */
+    width: auto; /* Убираем width: 100% */
     z-index: 1000;
-    padding: 13px 0;
+    padding: 13px 20px; /* Увеличиваем боковые отступы */
+    box-sizing: border-box;
+    border-radius: 50px; /* Ваш border-radius */
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(25px);
-    border-bottom: rgba(255, 255, 255, 0.62) 1px solid;
+    border-bottom: rgba(255, 255, 255, 0.62) 2px solid;
 }
 
 .navbar {
@@ -150,7 +153,7 @@ button, .btn {
 }
 
 .logo img {
-    height: 60px;
+    height: 80px;
 }
 
 .logo-icon {
@@ -202,20 +205,7 @@ button, .btn {
     color: #000;
 }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    margin-left: 1rem;
-}
 
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    margin: 3px 0;
-    transition: 0.3s;
-}
 
 /* Hero Section */
 .hero {
@@ -487,10 +477,11 @@ button, .btn {
 }
 
 .btn-secondary:hover {
-    background: #fff;
+    background: #FFAD01;
     color: #000;
     fill: #000;
     transform: translateY(-2px);
+    border: 1px solid #FFAD01;
 }
 
 /* Responsive Design */
@@ -654,7 +645,7 @@ button, .btn {
 }
 
 .btn-about {
-    background: #e3a644;
+    background: #FFAD01;
     color: #ffffff;
     fill: #fff;
     padding: 1rem 2rem;
@@ -744,7 +735,6 @@ button, .btn {
     .section-label {
         font-size: 16px; /* Еще больше уменьшил */
         gap: 8px;
-        justify-content: center;
         width: 100%;
         max-width: 100%;
         letter-spacing: 1px; /* Уменьшил межбуквенное расстояние */
@@ -1225,11 +1215,12 @@ button, .btn {
 
 /* Эффект при наведении - слово выдвигается вправо и становится белым */
 .service-tab-vertical:hover {
+    
     transform: translateZ(50px) scale(1.02);
 }
 
 .service-tab-vertical:hover .service-word-vertical {
-    color: #fff;
+    color: #FFAD01;
     transform: translateX(50px) translateZ(10px);
     font-size: 72px;
     text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
@@ -1253,7 +1244,7 @@ button, .btn {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.5) 100%);
+    background: linear-gradient(90deg, #FFAD01 0%, rgba(255, 208, 107, 0.5) 100%);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1;
     transform: translateZ(5px);
@@ -1644,9 +1635,9 @@ button, .btn {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid #2A2829;
     background: transparent;
-    color: rgba(255, 255, 255, 0.5);
+    color: #2A2829;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1655,13 +1646,13 @@ button, .btn {
 }
 
 .testimonial-nav-btn:hover {
-    border-color: #D4AF37;
-    color: #D4AF37;
+    border-color: #FFAD01;
+    color: #FFAD01;
 }
 
 .testimonial-nav-btn.active {
-    background: #D4AF37;
-    border-color: #D4AF37;
+    background: #FFAD01;
+    border-color: #FFAD01;
     color: #000;
 }
 
@@ -1720,7 +1711,7 @@ button, .btn {
 
 .quote-icon {
     font-size: 120px;
-    color: #D4AF37;
+    color: #FFAD01;
     font-family: serif;
     line-height: 0.8;
     margin-bottom: 30px;
@@ -1759,7 +1750,7 @@ button, .btn {
 .author-name {
     font-size: 20px;
     font-weight: 700;
-    color: #D4AF37;
+    color: #FFAD01;
     letter-spacing: 2px;
     margin: 0;
 }
@@ -1909,11 +1900,11 @@ button, .btn {
     padding: 18px 22px;
     font-size: 18px;
     font-weight: 600;
-    background-color: #D4AF37;
+    background-color: #FFAD01;
 }
 
 .cta-btn:hover  {
- box-shadow: #fff 0px 0px 10px;
+ box-shadow: #fff 0px 0px 25px;
 }
 
 .cta-image {

@@ -1,10 +1,8 @@
 // Добавьте в конец body или в отдельный файл script.js
-const hamburger = document.querySelector('.hamburger')
+
 const navMenu = document.querySelector('.nav-menu')
 
-hamburger.addEventListener('click', () => {
-	navMenu.classList.toggle('active')
-})
+
 
 // Smooth scroll animation on page load
 document.addEventListener('DOMContentLoaded', function() {
