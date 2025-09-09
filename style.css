@@ -1,9 +1,4 @@
 
-
-
-
-
-/* Убедимся что пути правильные - добавим ./ в начало */
 @font-face {
     font-family: 'Satoshi';
     src: url('./assets/fonts/Satoshi-Light.woff2') format('woff2'),
@@ -127,7 +122,7 @@ button, .btn {
     right: 0px; /* Вместо margin-right */
     width: auto; /* Убираем width: 100% */
     z-index: 1000;
-    padding: 13px 20px; 
+    padding: 20px 150px; 
     box-sizing: border-box;
     backdrop-filter: blur(15px);
     background: rgba(0, 0, 0, 0.3);
@@ -139,6 +134,7 @@ button, .btn {
     align-items: center;
     max-width: 1610px;
     margin: 0 auto;
+
     position: relative;
 }
 
@@ -161,7 +157,7 @@ button, .btn {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 100px;
+    gap: 50px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -324,7 +320,7 @@ button, .btn {
     background: transparent;
     padding: 15px 15px;
     display: none;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
 }
@@ -332,21 +328,9 @@ button, .btn {
 .mobile-logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #fff;
+
 }
 
-.mobile-logo .logo-icon {
-    font-size: 1.3rem;
-    color: #ffffff;
-}
-
-.mobile-logo .logo-text {
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
 
 /* Адаптивность */
 @media (max-width: 768px) {
@@ -356,6 +340,10 @@ button, .btn {
     
     .mobile-header {
         display: flex;
+    }
+    
+    .mobile-header .mobile-logo img {
+        height: 50px; /* Уменьшил с 80px до 50px */
     }
     
     .hero {
@@ -450,7 +438,7 @@ button, .btn {
 
 .btn-primary {
     display: flex;
-    background: #fff;
+    background: #FFAD01;
     color: #000;
     font-weight: 400;
     gap: 10px;
@@ -459,7 +447,7 @@ button, .btn {
 }
 
 .btn-primary:hover {
-    background: #f0f0f0;
+    box-shadow: 0 4px 15px rgba(255, 173, 1, 0.4);
     transform: translateY(-2px);
 }
 
@@ -480,6 +468,74 @@ button, .btn {
     fill: #000;
     transform: translateY(-2px);
     border: 1px solid #FFAD01;
+}
+
+/* Hero Arrow Animation */
+.hero-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFAD01;
+    animation: glowPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.hero-arrow svg {
+    filter: drop-shadow(0 0 10px #FFAD01);
+    transition: all 0.3s ease;
+}
+
+.hero-arrow:hover svg {
+    filter: drop-shadow(0 0 20px #FFAD01);
+    transform: scale(1.1);
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px #FFAD01);
+        opacity: 0.8;
+    }
+    50% {
+        filter: drop-shadow(0 0 25px #FFAD01) drop-shadow(0 0 35px #FFAD01);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Мобильная адаптация стрелочки */
+@media (max-width: 768px) {
+    .hero-arrow {
+        bottom: 0;
+    }
+    
+    .hero-arrow svg {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-arrow {
+        bottom: 0;
+    }
+    
+    .hero-arrow svg {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 /* Responsive Design */
@@ -525,6 +581,12 @@ button, .btn {
 }
 
 @media (max-width: 480px) {
+    .mobile-header .mobile-logo img {
+        display: flex;
+        justify-items: flex-start;
+        height: 80px; /* Еще меньше для маленьких экранов */
+    }
+    
     .navbar {
         padding: 0 0.75rem;
     }
@@ -540,7 +602,7 @@ button, .btn {
 /* About Section */
 .about-section {
     display: flex;
-    padding: 100px 0;
+    padding: 100px 140px;
     background: #1a1a1a;
     color: #fff;
     height: auto;
@@ -909,7 +971,7 @@ button, .btn {
 
 /* Services Tabs Section с параллакс эффектом */
 .services-tabs {
-    padding: 100px 0;
+    padding: 100px 150px;
     background: #000;
     color: #fff;
     overflow: hidden;
@@ -917,7 +979,7 @@ button, .btn {
     display: flex;
     align-items: center;
     position: relative;
-    /* Параллакс контейнер */
+
     transform-style: preserve-3d;
     perspective: 1000px;
     
@@ -964,7 +1026,6 @@ button, .btn {
     width: 100%;
     position: relative;
     z-index: 2;
-    /* Параллакс для контента */
     transform: translateZ(0);
 }
 
@@ -1099,15 +1160,15 @@ button, .btn {
     gap: 0;
     align-items: flex-start;
     max-width: 1650px;
-    /* Параллакс для табов */
-    transform: translateZ(20px) scale(0.98);
     
-    /* Скрываем контейнер изначально для анимации */
-    opacity: 0;
-    transform: translateX(-40px) translateZ(20px) scale(0.98);
+    /* Показываем контейнер сразу без анимации */
+    opacity: 1;
+    transform: translateX(0) translateZ(20px) scale(0.98);
     transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
 }
 
+/* Убираем правила анимации при скролле */
+/*
 .services-tabs-vertical.animate-on-scroll {
     opacity: 0;
     transform: translateX(-40px) translateZ(20px) scale(0.98);
@@ -1117,6 +1178,7 @@ button, .btn {
     opacity: 1;
     transform: translateX(0) translateZ(20px) scale(0.98);
 }
+*/
 
 .service-tab-vertical {
     position: relative;
@@ -1133,7 +1195,8 @@ button, .btn {
     transform: translateY(0);
 }
 
-/* Анимация при скролле */
+/* Закомментируем анимацию при скролле для табов */
+/*
 .service-tab-vertical.animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
@@ -1143,6 +1206,7 @@ button, .btn {
     opacity: 1;
     transform: translateY(0);
 }
+*/
 
 .service-tab-vertical:nth-child(1) { transform: translateZ(25px) scale(0.975); }
 .service-tab-vertical:nth-child(2) { transform: translateZ(30px) scale(0.97); }
@@ -1198,7 +1262,7 @@ button, .btn {
 }
 
 .service-word-vertical {
-    font-size: 64px;
+    font-size: 48px;
     font-weight: 700;
     color: #333;
     text-transform: uppercase;
@@ -1220,7 +1284,7 @@ button, .btn {
 .service-tab-vertical:hover .service-word-vertical {
     color: #FFAD01;
     transform: translateX(50px) translateZ(10px);
-    font-size: 72px;
+    font-size: 56px;
     text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
@@ -1230,8 +1294,8 @@ button, .btn {
 }
 
 .services-tabs-vertical:hover .service-tab-vertical:not(:hover) .service-word-vertical {
-    color: #111;
-    opacity: 0.3;
+    color: #333;
+    opacity: 1;
 }
 
 /* Линия-подчеркивание при наведении с параллакс эффектом */
@@ -1286,12 +1350,13 @@ button, .btn {
     height: 800px;
     flex-shrink: 0;
     
-    /* Анимация для изображений сервисов */
-    opacity: 0;
-    transform: translateX(40px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+    /* Показываем контейнер сразу без анимации */
+    opacity: 1;
+    transform: translateX(0);
 }
 
+/* Убираем правила анимации, которые мешают hover-эффектам */
+/*
 .services-images.animate-in {
     opacity: 1;
     transform: translateX(0);
@@ -1301,14 +1366,15 @@ button, .btn {
     opacity: 0;
     transform: translateX(40px);
 }
+*/
 
-/* Стили для изображений */
-.service-image {
+/* Стили для изображений в контейнере справа */
+.services-images .service-image {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    width: 700px;
+    height: 700px;
+    align-items: center;
     opacity: 0;
     transform: translateX(30px) scale(0.95);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1317,52 +1383,85 @@ button, .btn {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-.service-image.active {
+.services-images .service-image.active {
     opacity: 1;
     transform: translateX(0) scale(1);
 }
 
-.service-image img {
+.services-images .service-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    border-radius: 20px;
 }
 
-.service-image:hover img {
-    transform: scale(1.05);
-}
-
-/* Overlay для изображений */
-.image-overlay {
+.services-images .service-image .image-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
     padding: 30px;
-    color: #fff;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.4s ease;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
 }
 
-.service-image:hover .image-overlay {
+.services-images .service-image.active .image-overlay {
     transform: translateY(0);
-    opacity: 1;
 }
 
-.image-overlay h3 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #fff;
+/* Адаптивные стили для картинок в контейнере справа */
+@media (max-width: 1024px) {
+    .services-images .service-image {
+        width: 500px;
+        height: 500px;
+        border-radius: 16px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    }
+    
+    .services-images .service-image img {
+        border-radius: 16px;
+    }
 }
 
-.image-overlay p {
-    font-size: 14px;
-    color: #ccc;
-    line-height: 1.4;
+@media (max-width: 768px) {
+    .services-images .service-image {
+        width: 300px;
+        height: 300px;
+        border-radius: 12px;
+        transform: translateX(20px) scale(0.95);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .services-images .service-image img {
+        border-radius: 12px;
+    }
+    
+    .services-images .service-image.active {
+        transform: translateX(0) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .services-images .service-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 10px;
+        transform: translateX(15px) scale(0.9);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .services-images .service-image img {
+        border-radius: 10px;
+    }
+}
+
+
+
+/* Скрываем изображения внутри табов на десктопе */
+.service-tab-vertical .service-image {
+    display: none;
 }
 
 /* Адаптивные стили для изображений */
@@ -1414,18 +1513,51 @@ button, .btn {
         line-height: 1.1;
     }
     
-    .services-tabs-vertical {
-        transform: translateZ(10px) scale(0.99);
-        order: 1;
-        width: 100%;
+    .services-content {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+        min-height: auto;
     }
     
-    .service-tab-vertical:nth-child(n) {
+    .services-tabs-vertical {
+        order: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        transform: translateZ(10px) scale(0.99);
+    }
+    
+    .service-tab-vertical {
+        position: relative;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+        margin: 0;
+        touch-action: manipulation;
         transform: translateZ(15px) scale(0.98);
     }
     
+    .service-tab-vertical:last-child {
+        border-bottom: none;
+    }
+    
+    .service-tab-vertical.mobile-active {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
     .service-word-vertical {
-        font-size: 36px;
+        font-size: 24px;
+        display: block;
+        transition: all 0.3s ease;
+    }
+    
+    .service-tab-vertical.mobile-active .service-word-vertical {
+        color: #fff;
+        transform: translateX(10px);
     }
     
     .service-tab-vertical:hover {
@@ -1433,82 +1565,67 @@ button, .btn {
     }
     
     .service-tab-vertical:hover .service-word-vertical {
-        font-size: 42px;
+        font-size: 28px;
         transform: translateX(20px) translateZ(5px);
     }
     
-    .services-content {
-        flex-direction: column;
-        gap: 40px;
-        align-items: center;
-        min-height: auto;
-    }
-    
-    .services-images {
+    /* Показываем и стилизуем мобильные изображения внутри табов */
+    .service-tab-vertical .service-image {
+        display: block;
+        position: static;
         width: 100%;
-        max-width: 400px;
-        height: 280px;
-        order: 2;
+        height: 200px;
+        margin-top: 15px;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border-radius: 8px;
     }
     
-    .services-tabs-vertical {
-        order: 1;
-        width: 100%;
+    .service-tab-vertical.mobile-active .service-image {
+        opacity: 1;
+        max-height: 200px;
     }
     
-    /* Стили для изображений на мобильных */
-    .service-image {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .service-tab-vertical .service-image img {
         width: 100%;
         height: 100%;
-        opacity: 0;
-        transform: translateY(50px) scale(0.95);
-        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        transform-origin: center top;
+        object-fit: cover;
+        border-radius: 8px;
     }
     
-    .service-image.active {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    /* Скрываем контейнер изображений справа на мобильных */
+    .services-images {
+        display: none;
     }
     
-    /* Активное состояние для мобильных */
-    
-.service-tab-vertical.active .service-word-vertical {
-    color: #fff;
-    transform: translateX(50px) translateZ(10px);
-    font-size: 72px;
-    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-}
-    
-    .service-tab-vertical.active::after {
-        width: 200px;
-    }
-    
-    /* Улучшенная кликабельность на мобильных */
-    .service-tab-vertical {
-        cursor: pointer;
-        user-select: none;
-        padding: 15px 0;
-        margin: 10px 0;
-        touch-action: manipulation;
-    }
-    
+    /* Overlay для мобильных изображений */
     .image-overlay {
-        padding: 20px;
+        padding: 15px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
     }
     
     .image-overlay h3 {
-        font-size: 20px;
+        font-size: 18px;
+        margin-bottom: 5px;
     }
     
     .image-overlay p {
-        font-size: 13px;
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    /* Активное состояние для мобильных */
+    .service-tab-vertical.active .service-word-vertical {
+        color: #fff;
+        transform: translateX(50px) translateZ(10px);
+        font-size: 72px;
+        text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    }
+    
+    .service-tab-vertical.active::after {
+        width: 200px;
     }
 }
 
@@ -1538,45 +1655,52 @@ button, .btn {
         line-height: 1.1;
     }
     
+    .service-tab-vertical {
+        padding: 15px 0;
+    }
+    
     .service-word-vertical {
-        font-size: 28px;
+        font-size: 20px;
     }
     
     .service-tab-vertical:hover .service-word-vertical {
-        font-size: 32px;
+        font-size: 24px;
         transform: translateX(15px) translateZ(3px);
     }
     
-    .services-images {
-        height: 240px;
-        max-width: 350px;
+    .service-image {
+        height: 180px;
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
     
-    .service-image {
-        border-radius: 12px;
-        transform: translateY(100%) scale(0.85);
+    .service-image.mobile-active {
+        max-height: 180px;
+    }
+    
+    .service-image img {
+        border-radius: 10px;
+    }
+    
+    .image-overlay {
+        padding: 12px;
+    }
+    
+    .image-overlay h3 {
+        font-size: 16px;
+    }
+    
+    .image-overlay p {
+        font-size: 11px;
     }
     
     .service-tab-vertical.active .service-word-vertical {
-        font-size: 32px;
+        font-size: 24px;
         transform: translateX(15px);
     }
     
     .service-tab-vertical.active::after {
         width: 150px;
-    }
-    
-    .service-tab-vertical {
-        padding: 12px 0;
-        margin: 8px 0;
-    }
-    
-    .image-overlay {
-        padding: 15px;
-    }
-    
-    .image-overlay h3 {
-        font-size: 18px;
     }
 }
 
@@ -1585,7 +1709,7 @@ button, .btn {
 
 /* Testimonials Section - New Design */
 .testimonials-section {
-    padding: 100px 0;
+    padding: 100px 150px;
     background: #020202;
     color: #fff;
     min-height: 70vh;
@@ -1627,6 +1751,14 @@ button, .btn {
     display: flex;
     gap: 15px;
     margin-top: 20px;
+}
+
+.desktop-nav {
+    display: flex;
+}
+
+.mobile-nav {
+    display: none;
 }
 
 .testimonial-nav-btn {
@@ -1807,46 +1939,154 @@ button, .btn {
         padding: 60px 0;
     }
     
+    .testimonials-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .testimonials-left {
+        order: 1;
+        align-items: center;
+    }
+    
+    .testimonials-center {
+        order: 2;
+        position: relative;
+        touch-action: pan-y;
+    }
+    
+    .testimonials-right {
+        order: 3;
+        max-width: 100%;
+        padding: 0 20px;
+        width: 100%;
+    }
+    
+    .testimonial-navigation {
+        order: 4;
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: flex;
+        order: 4;
+        gap: 20px;
+        margin-top: 20px;
+        justify-content: center;
+        width: 100%;
+    }
+    
     .testimonials-title {
         font-size: 32px;
+        text-align: center;
+        margin-bottom: 20px;
     }
     
     .testimonial-slider {
         width: 200px;
-        height: 280px;
+        height: 200px;
+        margin: 0 auto;
     }
     
-    .quote-icon {
-        font-size: 80px;
+    .testimonial-image {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
     }
     
-    .testimonial-text {
-        font-size: 16px;
-        line-height: 1.5;
-    }
-    
-    .testimonial-text-slider {
-        min-height: 180px;
-    }
-    
-    .testimonials-right {
-        max-width: 100%;
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .testimonials-title {
-        font-size: 28px;
+    .testimonial-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
     
     .testimonial-nav-btn {
         width: 50px;
         height: 50px;
+        border: 2px solid #FFAD01;
+        background: rgba(255, 173, 1, 0.1);
+        color: #FFAD01;
+        box-shadow: 0 4px 15px rgba(255, 173, 1, 0.2);
+    }
+    
+    .testimonial-nav-btn:active {
+        transform: scale(0.95);
+        background: #FFAD01;
+        color: #000;
+    }
+    
+    .quote-icon {
+        font-size: 80px;
+        margin-bottom: 20px;
+    }
+    
+    .testimonial-text {
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .testimonial-text-slider {
+        min-height: 180px;
+        width: 100%;
+    }
+    
+    .testimonial-text-slide {
+        width: 100%;
+    }
+    
+    .author-name {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-nav {
+        margin-top: 15px;
+        gap: 15px;
+    }
+    
+    .testimonials-content {
+        gap: 25px;
+        padding: 0 15px;
+    }
+    
+    .testimonial-slider {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .testimonial-navigation {
+        gap: 15px;
+        margin-top: 0.5px;
+    }
+    
+    .testimonial-nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .testimonials-title {
+        font-size: 28px;
     }
     
     .testimonial-text {
         font-size: 15px;
+        padding: 0 10px;
     }
     
     .testimonial-text-slider {
@@ -1855,13 +2095,17 @@ button, .btn {
     
     .quote-icon {
         font-size: 60px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .testimonials-right {
+        padding: 0 15px;
     }
 }
 
 /* CTA Section */
 .cta-section {
-    padding: 100px 0;
+    padding: 100px 150px;
     background: #1F1B1C;
     color: #fff;
 }
@@ -1923,7 +2167,7 @@ button, .btn {
 .footer {
     background: #000;
     color: #fff;
-    padding: 80px 0 0;
+    padding: 80px 150px;
 }
 
 .footer-container {
@@ -1947,9 +2191,13 @@ button, .btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-weight: bold;
-    font-size: 1.2rem;
     margin-bottom: 20px;
+}
+
+.footer-logo img {
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .footer-description {
@@ -2099,8 +2347,18 @@ button, .btn {
         padding: 30px;
     }
     
+    .cta-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+    
     .cta-image {
-        height: 300px;
+        display: none;
     }
     
     .footer-links {
@@ -2131,6 +2389,18 @@ button, .btn {
     
     .cta-description {
         font-size: 16px;
+    }
+    
+    .cta-container {
+        padding: 0 20px;
+    }
+    
+    .cta-title {
+        margin-bottom: 40px;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
     }
     
     .footer-social {
@@ -2283,7 +2553,7 @@ html {
 
 /* Projects Section Animation Enhancements */
 .projects-section {
-    padding: 60px 0;
+    padding: 60px 150px;
     background: #000;
     color: #fff;
     /* Убираем начальную невидимость */
@@ -2732,7 +3002,7 @@ html {
 
 @media (max-width: 480px) {
     .projects-title {
-        font-size: 24px;
+        font-size: 20px;
     }
     
     .view-more-btn {
@@ -2757,7 +3027,7 @@ html {
     }
     
     .section-label::before {
-        width: 15px;
+        width: 16px;
     }
     
     .about-title {

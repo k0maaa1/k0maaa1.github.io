@@ -85,48 +85,88 @@ document.addEventListener('DOMContentLoaded', () => {
 // Интерактивные изображения для секции services
 function initServicesImages() {
     const serviceTabs = document.querySelectorAll('.service-tab-vertical');
-    const serviceImages = document.querySelectorAll('.service-image');
+    const serviceImages = document.querySelectorAll('.services-images .service-image'); // Исправляем селектор
     
     if (!serviceTabs.length || !serviceImages.length) return;
     
-    serviceTabs.forEach(tab => {
-        tab.addEventListener('mouseenter', () => {
-            const service = tab.getAttribute('data-service');
-            
-            // Скрыть все изображения
-            serviceImages.forEach(img => {
-                img.classList.remove('active');
-            });
-            
-            // Показать соответствующее изображение
-            const targetImage = document.querySelector(`.service-image[data-service="${service}"]`);
-            if (targetImage) {
-                setTimeout(() => {
-                    targetImage.classList.add('active');
-                }, 100);
-            }
-        });
-        
-        // Скрыть изображение при уходе курсора с конкретного таба
-        tab.addEventListener('mouseleave', () => {
-            const service = tab.getAttribute('data-service');
-            const targetImage = document.querySelector(`.service-image[data-service="${service}"]`);
-            if (targetImage) {
-                targetImage.classList.remove('active');
-            }
-        });
-    });
-}
+    // Проверяем, мобильное ли устройство
+    const isMobile = window.innerWidth <= 768;
     
-    // Скрыть все изображения при уходе курсора с секции
-    const servicesSection = document.querySelector('.services-tabs');
-    if (servicesSection) {
-        servicesSection.addEventListener('mouseleave', () => {
-            serviceImages.forEach(img => {
-                img.classList.remove('active');
+    if (isMobile) {
+        // Мобильная логика - клик для показа/скрытия
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const service = tab.getAttribute('data-service');
+                const targetImage = tab.querySelector('.service-image'); // Ищем изображение внутри таба
+                
+                // Проверяем, активен ли уже этот таб
+                const isActive = tab.classList.contains('mobile-active');
+                
+                // Закрываем все активные табы и изображения
+                serviceTabs.forEach(t => {
+                    t.classList.remove('mobile-active');
+                    const img = t.querySelector('.service-image');
+                    if (img) img.classList.remove('mobile-active');
+                });
+                
+                // Если таб не был активен, открываем его
+                if (!isActive && targetImage) {
+                    tab.classList.add('mobile-active');
+                    targetImage.classList.add('mobile-active');
+                }
             });
         });
     }
+    else {
+        // Desktop логика - hover для показа изображений
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('mouseenter', () => {
+                const service = tab.getAttribute('data-service');
+                
+                // Скрыть все изображения
+                serviceImages.forEach(img => {
+                    img.classList.remove('active');
+                });
+                
+                // Показать соответствующее изображение
+                const targetImage = document.querySelector(`.services-images .service-image[data-service="${service}"]`); // Исправляем селектор
+                if (targetImage) {
+                    setTimeout(() => {
+                        targetImage.classList.add('active');
+                    }, 100);
+                }
+            });
+            
+            // Скрыть изображение при уходе курсора с конкретного таба
+            tab.addEventListener('mouseleave', () => {
+                const service = tab.getAttribute('data-service');
+                const targetImage = document.querySelector(`.services-images .service-image[data-service="${service}"]`); // Исправляем селектор
+                if (targetImage) {
+                    targetImage.classList.remove('active');
+                }
+            });
+        });
+        
+        // Скрыть все изображения при уходе курсора с секции
+        const servicesSection = document.querySelector('.services-tabs');
+        if (servicesSection) {
+            servicesSection.addEventListener('mouseleave', () => {
+                serviceImages.forEach(img => {
+                    img.classList.remove('active');
+                });
+            });
+        }
+    }
+    
+    // Обновляем логику при изменении размера окна
+    window.addEventListener('resize', () => {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile !== isMobile) {
+            // Перезапускаем функцию при смене режима
+            location.reload();
+        }
+    });
+}
 
 
 // Параллакс эффект для секции services-tabs
@@ -216,6 +256,11 @@ function initProjectsScrollAnimation() {
 
 // Анимация появления текста в секции services при скролле
 function initServicesScrollAnimation() {
+    // Полностью отключаем анимацию при скролле для сервисов
+    // Элементы будут видны сразу
+    return;
+    
+    /* Закомментированный код анимации
     const servicesSection = document.querySelector('.services-tabs');
     const servicesHeader = document.querySelector('.services-header');
     const servicesSubtitle = document.querySelector('.services-subtitle');
@@ -265,10 +310,6 @@ function initServicesScrollAnimation() {
                         }, 600 + (index * 150)); // Задержка 150ms между каждым элементом
                     });
                     
-                    setTimeout(() => {
-                        if (servicesImages) servicesImages.classList.add('animate-in');
-                    }, 1200); // Изображения появляются после всех названий
-                    
                     // Отключаем observer после срабатывания
                     observer.unobserve(entry.target);
                 }
@@ -280,6 +321,7 @@ function initServicesScrollAnimation() {
         
         observer.observe(servicesSection);
     }
+    */
 }
 
 // Инициализируем анимацию при загрузке страницы
@@ -337,9 +379,24 @@ function initTestimonialsSlider() {
     const textSlides = document.querySelectorAll('.testimonial-text-slide');
     const prevBtn = document.getElementById('prevTestimonial');
     const nextBtn = document.getElementById('nextTestimonial');
+    // Добавляем мобильные кнопки
+    const prevBtnMobile = document.getElementById('prevTestimonialMobile');
+    const nextBtnMobile = document.getElementById('nextTestimonialMobile');
+    const sliderContainer = document.querySelector('.testimonials-center');
     let currentSlide = 0;
     let autoSlideInterval;
     let isHovered = false;
+    
+    // Touch/Swipe variables
+    let startX = 0;
+    let startY = 0;
+    let distX = 0;
+    let distY = 0;
+    let threshold = 50; // minimum distance for swipe
+    let restraint = 100; // maximum distance perpendicular to swipe direction
+    let allowedTime = 300; // maximum time allowed to travel that distance
+    let elapsedTime = 0;
+    let startTime = 0;
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
@@ -353,26 +410,25 @@ function initTestimonialsSlider() {
     function nextSlide() {
         if (currentSlide < slides.length - 1) {
             currentSlide++;
-            showSlide(currentSlide);
+        } else {
+            currentSlide = 0;
         }
+        showSlide(currentSlide);
     }
 
     function prevSlide() {
         if (currentSlide > 0) {
             currentSlide--;
-            showSlide(currentSlide);
+        } else {
+            currentSlide = slides.length - 1;
         }
+        showSlide(currentSlide);
     }
 
     function startAutoSlide() {
         if (!isHovered) {
             autoSlideInterval = setInterval(() => {
-                if (currentSlide < slides.length - 1) {
-                    nextSlide();
-                } else {
-                    currentSlide = 0;
-                    showSlide(currentSlide);
-                }
+                nextSlide();
             }, 5000);
         }
     }
@@ -381,29 +437,85 @@ function initTestimonialsSlider() {
         clearInterval(autoSlideInterval);
     }
 
-    // Event listeners
-    if (nextBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-        nextBtn.addEventListener('mouseenter', () => {
-            isHovered = true;
-            stopAutoSlide();
-        });
-        nextBtn.addEventListener('mouseleave', () => {
-            isHovered = false;
-            startAutoSlide();
-        });
+    // Touch event handlers
+    function handleTouchStart(e) {
+        const touchobj = e.changedTouches[0];
+        startX = touchobj.pageX;
+        startY = touchobj.pageY;
+        startTime = new Date().getTime();
+        stopAutoSlide();
     }
+
+    function handleTouchMove(e) {
+        e.preventDefault(); // prevent scrolling when inside DIV
+    }
+
+    function handleTouchEnd(e) {
+        const touchobj = e.changedTouches[0];
+        distX = touchobj.pageX - startX;
+        distY = touchobj.pageY - startY;
+        elapsedTime = new Date().getTime() - startTime;
+        
+        if (elapsedTime <= allowedTime) {
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                if (distX > 0) {
+                    // Swipe right - previous slide
+                    prevSlide();
+                } else {
+                    // Swipe left - next slide
+                    nextSlide();
+                }
+            }
+        }
+        startAutoSlide();
+    }
+
+    // Функция для добавления обработчиков к кнопкам
+    function addButtonListeners(prevButton, nextButton) {
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                stopAutoSlide();
+                nextSlide();
+                setTimeout(startAutoSlide, 1000);
+            });
+            nextButton.addEventListener('mouseenter', () => {
+                isHovered = true;
+                stopAutoSlide();
+            });
+            nextButton.addEventListener('mouseleave', () => {
+                isHovered = false;
+                startAutoSlide();
+            });
+        }
+        
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                stopAutoSlide();
+                prevSlide();
+                setTimeout(startAutoSlide, 1000);
+            });
+            prevButton.addEventListener('mouseenter', () => {
+                isHovered = true;
+                stopAutoSlide();
+            });
+            prevButton.addEventListener('mouseleave', () => {
+                isHovered = false;
+                startAutoSlide();
+            });
+        }
+    }
+
+    // Добавляем обработчики для десктопных кнопок
+    addButtonListeners(prevBtn, nextBtn);
     
-    if (prevBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-        prevBtn.addEventListener('mouseenter', () => {
-            isHovered = true;
-            stopAutoSlide();
-        });
-        prevBtn.addEventListener('mouseleave', () => {
-            isHovered = false;
-            startAutoSlide();
-        });
+    // Добавляем обработчики для мобильных кнопок
+    addButtonListeners(prevBtnMobile, nextBtnMobile);
+
+    // Touch event listeners for swipe functionality
+    if (sliderContainer) {
+        sliderContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+        sliderContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+        sliderContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
     }
 
     // Initialize
@@ -414,6 +526,27 @@ function initTestimonialsSlider() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initTestimonialsSlider();
+});
+
+
+// Hero Arrow Click Handler
+function initHeroArrow() {
+    const heroArrow = document.querySelector('.hero-arrow');
+    const aboutSection = document.querySelector('.about-section');
+    
+    if (heroArrow && aboutSection) {
+        heroArrow.addEventListener('click', function() {
+            aboutSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    }
+}
+
+// Initialize hero arrow on page load
+document.addEventListener('DOMContentLoaded', function() {
+    initHeroArrow();
 });
 
 

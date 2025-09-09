@@ -19,12 +19,19 @@
 					<img src="assets/images/logotest.png" alt="">
 				</div>
 				<ul class="nav-menu">
-					<li><a href="/">HOME</a></li>
-					<li><a href="/shop">SHOP</a></li>
+					<li><a href="/">DIENSTLEISTUNGEN</a></li>
+					<li><a href="/product">PRODUCT</a></li>
 					<li><a href="/aboutus">UBER UNS</a></li>
 				</ul>
 				<div class="nav-right">
-					<button class="contact-btn">KONTAKT</button>
+					<button class="btn btn-primary">
+						Book A Call
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+							<path
+								d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z"
+							/>
+						</svg>
+					</button>
 					
 				</div>
 			</nav>
@@ -33,8 +40,7 @@
 		<!-- Мобильный логотип вверху -->
 		<div class="mobile-header">
 			<div class="mobile-logo">
-				<span class="logo-icon">✱</span>
-				<span class="logo-text">GDM INTERIORS</span>
+				<img src="assets/images/logotest.png" alt="">
 			</div>
 		</div>
 
@@ -54,15 +60,15 @@
 							/>
 						</svg>
 					</button>
-					<button class="btn btn-secondary">
-						Explore Our Projects
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-							<path
-								d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z"
-							/>
-						</svg>
-					</button>
+					
 				</div>
+			</div>
+			
+			<!-- Анимированная стрелочка -->
+			<div class="hero-arrow">
+				<svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+					<path d="M12 5V19M19 12L12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
 			</div>
 		</section>
 
@@ -268,6 +274,19 @@
 							data-image="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2340&auto=format&fit=crop"
 						>
 							<span class="service-word-vertical">INNENEINRICHTUNG</span>
+							<div class="service-image" data-service="interior">
+								<img
+									src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2340&auto=format&fit=crop"
+									alt="Interior Design"
+								/>
+								<div class="image-overlay">
+									<h3>Interior Design</h3>
+									<p>
+										Создаем уникальные интерьеры, отражающие ваш стиль и
+										функциональные потребности
+									</p>
+								</div>
+							</div>
 						</div>
 						<div
 							class="service-tab-vertical"
@@ -275,6 +294,19 @@
 							data-image="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2340&auto=format&fit=crop"
 						>
 							<span class="service-word-vertical">AUSSTATTUNG</span>
+							<div class="service-image" data-service="fitout">
+								<img
+									src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2340&auto=format&fit=crop"
+									alt="Fit Out"
+								/>
+								<div class="image-overlay">
+									<h3>Fit Out</h3>
+									<p>
+										Комплексное оснащение коммерческих и жилых пространств под
+										ключ
+									</p>
+								</div>
+							</div>
 						</div>
 						<div
 							class="service-tab-vertical"
@@ -282,6 +314,19 @@
 							data-image="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2340&auto=format&fit=crop"
 						>
 							<span class="service-word-vertical">TISCHLEREIARBEITEN</span>
+							<div class="service-image" data-service="joinery">
+								<img
+									src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2340&auto=format&fit=crop"
+									alt="Joinery Works"
+								/>
+								<div class="image-overlay">
+									<h3>Joinery Works</h3>
+									<p>
+										Изготовление мебели и столярных изделий по индивидуальным
+										проектам
+									</p>
+								</div>
+							</div>
 						</div>
 						<div
 							class="service-tab-vertical"
@@ -289,6 +334,18 @@
 							data-image="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2340&auto=format&fit=crop"
 						>
 							<span class="service-word-vertical">GLAS</span>
+							<div class="service-image" data-service="glass">
+								<img
+									src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2340&auto=format&fit=crop"
+									alt="Glass Works"
+								/>
+								<div class="image-overlay">
+									<h3>Glass Works</h3>
+									<p>
+										Современные стеклянные конструкции и декоративные элементы
+									</p>
+								</div>
+							</div>
 						</div>
 						<div
 							class="service-tab-vertical"
@@ -296,10 +353,23 @@
 							data-image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2340&auto=format&fit=crop"
 						>
 							<span class="service-word-vertical">METALL</span>
+							<div class="service-image" data-service="metal">
+								<img
+									src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2340&auto=format&fit=crop"
+									alt="Metal Works"
+								/>
+								<div class="image-overlay">
+									<h3>Metal Works</h3>
+									<p>
+										Металлические конструкции и декоративные элементы высокого
+										качества
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 
-					<!-- Контейнер для изображений справа -->
+					<!-- Контейнер для изображений справа (только для desktop) -->
 					<div class="services-images">
 						<div class="service-image" data-service="interior">
 							<img
@@ -376,9 +446,9 @@
 				<div class="testimonials-content">
 					<div class="testimonials-left">
 						<span class="section-label">KUNDENSTIMME</span>
-						<h2 class="testimonials-title">WAS UNSERE KUNDEN <br />SAGEN</h2>
+						<h2 class="testimonials-title">WAS UNSERE KUNDEN SAGEN</h2>
 
-						<div class="testimonial-navigation">
+						<div class="testimonial-navigation desktop-nav">
 							<button class="testimonial-nav-btn prev" id="prevTestimonial">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
 									<path
@@ -466,6 +536,32 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- Mobile Navigation -->
+					<div class="testimonial-navigation mobile-nav">
+						<button class="testimonial-nav-btn prev" id="prevTestimonialMobile">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path
+									d="M15 18L9 12L15 6"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+						<button class="testimonial-nav-btn next active" id="nextTestimonialMobile">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path
+									d="M9 18L15 12L9 6"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -500,8 +596,7 @@
 				<div class="footer-content">
 					<div class="footer-brand">
 						<div class="footer-logo">
-							<span class="logo-icon">✱</span>
-							<span class="logo-text">GDM INTERIORS</span>
+							<img src="/assets/images/logotest.png" alt="">
 						</div>
 						<p class="footer-description">
 							Мы создаем пространства, которые вдохновляют и отражают вашу
