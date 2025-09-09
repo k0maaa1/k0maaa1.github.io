@@ -122,17 +122,15 @@ button, .btn {
 /* Header Styles */
 .header {
     position: fixed;
-    top: 10px; /* Вместо margin-top */
-    left: 10px; /* Вместо margin-left */
-    right: 10px; /* Вместо margin-right */
+    top: 0px; /* Вместо margin-top */
+    left: 0px; /* Вместо margin-left */
+    right: 0px; /* Вместо margin-right */
     width: auto; /* Убираем width: 100% */
     z-index: 1000;
-    padding: 13px 20px; /* Увеличиваем боковые отступы */
+    padding: 13px 20px; 
     box-sizing: border-box;
-    border-radius: 50px; /* Ваш border-radius */
+    backdrop-filter: blur(15px);
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(25px);
-    border-bottom: rgba(255, 255, 255, 0.62) 2px solid;
 }
 
 .navbar {
