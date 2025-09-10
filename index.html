@@ -10,7 +10,7 @@
 		<meta http-equiv="Expires" content="0" />
 		
 		<title>Admara Renovation</title>
-		<link rel="stylesheet" href="style.css?v=9.0.1" />
+		<link rel="stylesheet" href="style.css?v=9.0.2" />
 	</head>
 	<body>
 		<header class="header">
@@ -74,7 +74,7 @@
 					<div class="hero-znacki">
 						<img src="assets/images/znachki/Accredited.png" alt="">
 						<img src="assets/images/znachki/google.png" alt="">
-						<img src="https://ipswich.clipnclimb.co.uk/wp-content/uploads/2020/06/REVIEW-LOGO-facebook-e1527025669495.png" alt="">
+						<img src="assets/images/znachki/fb.png" alt="">
 						<img src="assets/images/znachki/eu.png" alt="">
 					</div>
 					
@@ -120,7 +120,7 @@
 							
 							<div class="form-checkbox">
 								<input type="checkbox" id="consent" required>
-								<label for="consent">*Mit dem Ankreuzen dieses Feldes erkläre ich mich damit einverstanden, SMS-Nachrichten von Admara Renovation zu erhalten. Zum Abbestellen jederzeit „STOP“ antworten. Es können Gebühren für Nachrichten und Daten anfallen; die Häufigkeit der Nachrichten kann variieren. Weitere Informationen finden Sie in unserer Datenschutzerklärung.</label>
+								<label for="consent">*Mit dem Ankreuzen dieses Feldes erkläre ich mich damit einverstanden, SMS-Nachrichten von Admara Renovation zu erhalten. <a href="#" id="openConsentModal" class="consent-link">Mehr erfahren</a></label>
 							</div>
 							
 							<button type="submit" class="form-submit-btn">Kostenlos anfragen →</button>
@@ -967,4 +967,44 @@
 				</div>
 			</div>
 		</div>
+		<!-- SMS Consent Modal -->
+		<div id="consentModal" class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>SMS-Einverständniserklärung</h3>
+					<span class="modal-close" id="closeConsentModal">&times;</span>
+				</div>
+				<div class="modal-body">
+					<h4>Einverständnis zum Erhalt von SMS-Nachrichten</h4>
+					<p>Mit dem Ankreuzen des Feldes erklären Sie sich damit einverstanden, SMS-Nachrichten von <strong>Admara Renovation</strong> zu erhalten.</p>
+					
+					<h4>Wichtige Informationen:</h4>
+					<ul>
+						<li><strong>Abmeldung:</strong> Sie können sich jederzeit abmelden, indem Sie "STOP" als Antwort senden</li>
+						<li><strong>Kosten:</strong> Es können Gebühren für Nachrichten und Datenübertragung anfallen</li>
+						<li><strong>Häufigkeit:</strong> Die Häufigkeit der Nachrichten kann variieren</li>
+						<li><strong>Datenschutz:</strong> Weitere Informationen finden Sie in unserer Datenschutzerklärung</li>
+					</ul>
+					
+					<h4>Art der Nachrichten:</h4>
+					<p>Sie erhalten Nachrichten zu:</p>
+					<ul>
+						<li>Terminbestätigungen und -erinnerungen</li>
+						<li>Projektaktualisierungen</li>
+						<li>Wichtige Mitteilungen zu Ihrem Renovierungsprojekt</li>
+						<li>Gelegentliche Angebote und Promotionen</li>
+					</ul>
+					
+					<p class="modal-note"><strong>Hinweis:</strong> Diese Einverständniserklärung ist freiwillig, aber erforderlich, um unsere SMS-Services nutzen zu können.</p>
+				</div>
+				<div class="modal-footer">
+					<button class="modal-btn modal-btn-secondary" id="declineConsent">Ablehnen</button>
+					<button class="modal-btn modal-btn-primary" id="acceptConsent">Einverstanden</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
 		

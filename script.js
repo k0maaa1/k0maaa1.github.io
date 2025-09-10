@@ -577,44 +577,62 @@ document.addEventListener('DOMContentLoaded', function() {
     initDropdown();
 });
 
-// Модальное окно
+// SMS Consent Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('contactModal');
-    const openModalBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.querySelector('.modal-close');
+    const openConsentModal = document.getElementById('openConsentModal');
+    const consentModal = document.getElementById('consentModal');
+    const closeConsentModal = document.getElementById('closeConsentModal');
+    const acceptConsent = document.getElementById('acceptConsent');
+    const declineConsent = document.getElementById('declineConsent');
+    const consentCheckbox = document.getElementById('consent');
 
-    // Проверяем, что элементы существуют
-    if (!modal || !openModalBtn || !closeModalBtn) {
-        console.error('Модальное окно: не найдены необходимые элементы');
-        return;
+    // Open modal
+    if (openConsentModal) {
+        openConsentModal.addEventListener('click', function(e) {
+            e.preventDefault();
+            consentModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
     }
 
-    // Открытие модального окна
-    openModalBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-    });
-
-    // Закрытие модального окна
-    closeModalBtn.addEventListener('click', function() {
-        modal.classList.remove('show');
+    // Close modal function
+    function closeModal() {
+        consentModal.classList.remove('show');
         document.body.style.overflow = 'auto';
-    });
+    }
 
-    // Закрытие по клику вне модального окна
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto';
+    // Close modal events
+    if (closeConsentModal) {
+        closeConsentModal.addEventListener('click', closeModal);
+    }
+
+    // Close on backdrop click
+    consentModal.addEventListener('click', function(e) {
+        if (e.target === consentModal) {
+            closeModal();
         }
     });
 
-    // Закрытие по нажатию Escape
+    // Accept consent
+    if (acceptConsent) {
+        acceptConsent.addEventListener('click', function() {
+            consentCheckbox.checked = true;
+            closeModal();
+        });
+    }
+
+    // Decline consent
+    if (declineConsent) {
+        declineConsent.addEventListener('click', function() {
+            consentCheckbox.checked = false;
+            closeModal();
+        });
+    }
+
+    // Close on Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            modal.classList.remove('show');
-            document.body.style.overflow = 'auto';
+        if (e.key === 'Escape' && consentModal.classList.contains('show')) {
+            closeModal();
         }
     });
 });
