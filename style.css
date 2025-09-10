@@ -424,6 +424,207 @@ button, .btn {
     font-weight: 500;
 }
 
+/* Advantages Section Styles */
+.advantages-section {
+    padding: 80px 150px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    position: relative;
+}
+
+.advantages-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #FFAD02 50%, transparent 100%);
+}
+
+.advantages-container {
+
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.advantages-header {
+    margin-bottom: 60px;
+}
+
+.advantages-subtitle {
+    font-size: 28px;
+    font-weight: 300;
+    color: #888;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-width: 0;
+}
+
+.advantages-subtitle::before {
+    content: '';
+    width: 150px;
+    height: 2px;
+    background: #888;
+    display: block;
+    flex-shrink: 0;
+}
+
+.advantages-title {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.advantage-item {
+    background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+    padding: 35px 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 173, 2, 0.1);
+}
+
+.advantage-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #FFAD02, #ffba26);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.advantage-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 173, 2, 0.3);
+    background: linear-gradient(135deg, #333333 0%, #444444 100%);
+}
+
+.advantage-item:hover::before {
+    transform: scaleX(1);
+}
+
+.advantage-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, rgba(255, 173, 2, 0.15), rgba(255, 186, 38, 0.15));
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 173, 2, 0.2);
+}
+
+.advantage-item:hover .advantage-icon {
+    background: linear-gradient(135deg, rgba(255, 173, 2, 0.25), rgba(255, 186, 38, 0.25));
+    transform: scale(1.1);
+    border-color: rgba(255, 173, 2, 0.4);
+    box-shadow: 0 0 20px rgba(255, 173, 2, 0.3);
+}
+
+.advantage-icon svg {
+    transition: all 0.3s ease;
+}
+
+.advantage-item:hover .advantage-icon svg {
+    transform: scale(1.1);
+}
+
+.advantage-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.advantage-description {
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .advantages-section {
+        padding: 60px 0;
+    }
+    
+    .advantages-container {
+        padding: 0 16px;
+    }
+    
+    .advantages-header {
+        margin-bottom: 40px;
+    }
+    
+    .advantages-title {
+        font-size: 32px;
+    }
+    
+    .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 40px;
+    }
+    
+    .advantage-item {
+        padding: 32px 24px;
+    }
+    
+    .advantage-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 20px;
+    }
+    
+    .advantage-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .advantage-title {
+        font-size: 18px;
+    }
+    
+    .advantage-description {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .advantages-title {
+        font-size: 28px;
+    }
+    
+    .advantage-item {
+        padding: 24px 20px;
+    }
+}
+
 /* Мобильный header с логотипом */
 .mobile-header {
     position: fixed;
@@ -1689,7 +1890,7 @@ button, .btn {
 }
 
 .service-word-vertical {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
     color: #333;
     text-transform: uppercase;
@@ -1705,13 +1906,13 @@ button, .btn {
 /* Эффект при наведении - слово выдвигается вправо и становится белым */
 .service-tab-vertical:hover {
     
-    transform: translateZ(50px) scale(1.02);
+    transform: translateZ(20px) scale(0.5);
 }
 
 .service-tab-vertical:hover .service-word-vertical {
     color: #FFAD01;
-    transform: translateX(50px) translateZ(10px);
-    font-size: 56px;
+    transform: translateX(20px) translateZ(3px);
+    font-size: 40px;
     text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
 }
 
