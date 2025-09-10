@@ -769,6 +769,13 @@ button, .btn {
     min-width: 120px;
 }
 
+.hero-znacki {
+    display: flex;
+    margin-top: 20px;
+    height: 50px;
+    gap: 25px;
+}
+
 .stat-number {
     font-size: 27px;
     font-weight: 700;
