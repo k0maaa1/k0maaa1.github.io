@@ -547,12 +547,16 @@ button, .btn {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: 35px;
     font-weight: bold;
     margin-bottom: 2rem;
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     color: #fff;
+}
+
+.hero-title p {
+    font-size: 100px;
 }
 
 .hero-buttons {
