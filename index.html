@@ -10,17 +10,28 @@
 		<meta http-equiv="Expires" content="0" />
 		
 		<title>Admara Modern</title>
-		<link rel="stylesheet" href="style.css?v=2.0.0" />
+		<link rel="stylesheet" href="style.css?v=3.0.0" />
 	</head>
 	<body>
 		<header class="header">
 			<nav class="navbar">
 				<div class="logo">
-					<img src="assets/images/logotest1.png?v=2.0.0" alt="">
+					<img src="assets/images/logotest1.png?v=3.0.0" alt="">
 				</div>
 				<ul class="nav-menu">
 					<li><a href="/">DIENSTLEISTUNGEN</a></li>
-					<li><a href="/product">PRODUKT</a></li>
+					<li class="dropdown">
+						<a href="/product" class="dropdown-toggle">PRODUKT
+							<svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none">
+								<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="/product/wallpapers">Liquid Wallpapers</a></li>
+							<li><a href="/product/solaranlage">Solaranlage</a></li>
+							<li><a href="/product/fenster">Fenster</a></li>
+						</ul>
+					</li>
 					<li><a href="/aboutus">UBER UNS</a></li>
 				</ul>
 				<div class="nav-right">
@@ -40,27 +51,57 @@
 		<!-- Мобильный логотип вверху -->
 		<div class="mobile-header">
 			<div class="mobile-logo">
-				<img src="assets/images/logotest1.png?v=1.0.3" alt="">
+				<img src="assets/images/logotest1.png?v=3.0.0" alt="">
 			</div>
 		</div>
 
 		<section class="hero">
 			<div class="hero-overlay"></div>
-			<div class="hero-content">
-				<h1 class="hero-title">
-					SPACES REIMAGINED,<br />
-					DREAMS REALIZED
-				</h1>
-				<div class="hero-buttons">
-					<button class="btn btn-primary">
-						Book A Call
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-							<path
-								d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z"
-							/>
-						</svg>
-					</button>
-					
+			<div class="hero-container">
+				<div class="hero-left">
+					<h1 class="hero-title">
+						SPACES REIMAGINED,<br />
+						DREAMS REALIZED
+					</h1>
+					<div class="hero-buttons">
+						<button class="btn btn-primary">
+							Book A Call
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+								<path
+									d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z"
+								/>
+							</svg>
+						</button>
+					</div>
+				</div>
+				
+				<div class="hero-right">
+					<div class="hero-form">
+						<div class="form-badge">
+							<span class="badge-text">SEPT. 2025 BLACK FRIDAY SPECIAL</span>
+						</div>
+						<h3 class="form-title">Bis zu 500 € Bonus – nur bei Entscheidung innerhalb von 24 Stunden!</h3>
+						<p class="form-description">Kostenloses, unverbindliches Angebot mit Expertenberatung anfordern!</p>
+						
+						<form class="contact-form">
+							<div class="form-row">
+								<input type="text" placeholder="First Name" class="form-input" required>
+								<input type="text" placeholder="Last Name" class="form-input" required>
+							</div>
+							<div class="form-row">
+								<input type="email" placeholder="Email" class="form-input" required>
+								<input type="tel" placeholder="Phone" class="form-input" required>
+							</div>
+							<textarea placeholder="Tell us about your project" class="form-textarea" rows="4"></textarea>
+							
+							<div class="form-checkbox">
+								<input type="checkbox" id="consent" required>
+								<label for="consent">*By checking this box, I consent to receive SMS messages from GVD. Reply STOP to opt out at any time. Messages and data rates may apply, frequency will vary. Learn more in our Privacy Policy</label>
+							</div>
+							
+							<button type="submit" class="form-submit-btn">Kostenlos anfragen →</button>
+						</form>
+					</div>
 				</div>
 			</div>
 			
@@ -595,9 +636,6 @@
 			<div class="footer-container">
 				<div class="footer-content">
 					<div class="footer-brand">
-						<div class="footer-logo">
-							<img src="/assets/images/logotest1.png" alt="">
-						</div>
 						<p class="footer-description">
 							Мы создаем пространства, которые вдохновляют и отражают вашу
 							индивидуальность.
