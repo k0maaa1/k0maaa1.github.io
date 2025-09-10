@@ -577,4 +577,46 @@ document.addEventListener('DOMContentLoaded', function() {
     initDropdown();
 });
 
+// Модальное окно
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('contactModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.querySelector('.modal-close');
+
+    // Проверяем, что элементы существуют
+    if (!modal || !openModalBtn || !closeModalBtn) {
+        console.error('Модальное окно: не найдены необходимые элементы');
+        return;
+    }
+
+    // Открытие модального окна
+    openModalBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Закрытие модального окна
+    closeModalBtn.addEventListener('click', function() {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    });
+
+    // Закрытие по клику вне модального окна
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Закрытие по нажатию Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
 
