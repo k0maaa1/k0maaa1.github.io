@@ -97,6 +97,7 @@ function initServiceCarousels() {
         
         const slides = carousel.querySelectorAll('.carousel-slide');
         const dots = carousel.querySelectorAll('.dot');
+        // Убираем textArea - больше не нужен
         
         console.log(`Service ${serviceIndex}: Found ${slides.length} slides, ${dots.length} dots`);
         
@@ -161,13 +162,16 @@ function initServiceCarousels() {
             // Полное перелистывание: каждый индекс = 100% ширины
             track.style.transform = `translateX(-${normalizedIndex * 100}%)`;
             
-            // Обновляем классы
+            // Обновляем классы слайдов
             slides.forEach((slide, i) => {
                 slide.classList.toggle('active', i === normalizedIndex);
             });
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === normalizedIndex);
             });
+            
+            // Убираем обновление текста - его больше нет
+            
             currentSlide = normalizedIndex;
         }
         
