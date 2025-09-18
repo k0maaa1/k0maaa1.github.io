@@ -1598,20 +1598,21 @@ button, .btn {
 }
 
 
-/* Services Tabs Section - фиксированная высота */
+/* Services Tabs Section - убираем параллакс */
 .services-tabs {
-    padding: 60px 80px 20px 80px;
+    padding: 50px 150px 50px 150px;
     background: #272727;
     color: #fff;
     overflow: hidden;
-    height: 800px; /* Фиксированная высота вместо 100vh */
+    height: 700px;
 
     display: flex;
     align-items: center;
     position: relative;
 
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    /* Убираем параллакс эффекты */
+    /* transform-style: preserve-3d;
+    perspective: 1000px; */
     
     opacity: 1;
     transform: translateY(0);
@@ -1628,8 +1629,8 @@ button, .btn {
     transform: translateY(0);
 } */
 
-/* Параллакс фон */
-.services-tabs::before {
+/* Убираем параллакс фон */
+/* .services-tabs::before {
     content: '';
     position: absolute;
     top: -20%;
@@ -1641,7 +1642,7 @@ button, .btn {
     transform: translateZ(-1px) scale(1.1);
     animation: parallaxFloat 20s ease-in-out infinite;
     z-index: 0;
-}
+} */
 
 @keyframes parallaxFloat {
     0%, 100% { transform: translateZ(-1px) scale(1.1) translateY(0px); }
@@ -1664,8 +1665,9 @@ button, .btn {
 }
 
 .services-header {
-    display: flex;
-    justify-content: space-between;
+        display: flex;
+    flex-direction: column; /* Добавляем вертикальное направление */
+    justify-content: flex-start; /* Меняем с space-between */
     align-items: flex-start;
     margin-bottom: 40px; /* Уменьшаем отступ с 80px */
     position: relative;
@@ -1690,15 +1692,13 @@ button, .btn {
     font-weight: 300;
     color: #888;
     letter-spacing: 2px;
-    margin-bottom: 5px;
+    margin-bottom: 20px; /* Увеличиваем отступ снизу */
     display: flex;
     align-items: center;
     gap: 20px;
     width: 100%;
     min-width: 0;
-    position: absolute;
-    top: -70px;
-    left: 0;
+    position: static; /* Меняем с absolute на static */
     
     /* Подзаголовок видим по умолчанию */
     opacity: 1;
@@ -2000,8 +2000,8 @@ button, .btn {
 /* Изображения услуг без текста */
 .services-images .service-image {
     width: 100%;
-    max-width: 500px; /* Увеличиваем, так как нет текста */
-    height: 450px; /* Увеличиваем высоту */
+    max-width: 600px; /* Увеличиваем, так как нет текста */
+    height: 500px; /* Увеличиваем высоту */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -2010,7 +2010,6 @@ button, .btn {
     overflow: hidden;
     opacity: 0;
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .services-images .service-image.active {
@@ -2148,7 +2147,8 @@ button, .btn {
 /* Большие планшеты и маленькие десктопы (1024px - 1200px) */
 @media (max-width: 1200px) {
     .services-tabs {
-        padding: 120px 80px;
+        padding: 40px 100px 15px 100px; /* Средние экраны */
+        height: 600px;
     }
     
     .services-content {
@@ -2255,7 +2255,7 @@ button, .btn {
 /* Маленькие планшеты (600px - 768px) */
 @media (max-width: 768px) {
     .services-tabs {
-        padding: 80px 40px;
+        padding: 30px 60px 10px 60px; /* Планшеты */
         height: auto;
         perspective: 500px;
     }
@@ -2469,7 +2469,7 @@ button, .btn {
 /* Очень маленькие мобильные устройства (до 480px) */
 @media (max-width: 480px) {
     .services-tabs {
-        padding: 50px 15px;
+        padding: 20px 20px 5px 20px; /* Мобильные */
         perspective: 300px;
     }
     

@@ -363,11 +363,11 @@ function initServicesParallax() {
         const rect = servicesSection.getBoundingClientRect();
         const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
         
-        // Параллакс для контейнера
-        const containerOffset = (scrollProgress - 0.5) * 50;
-        if (servicesContainer) {
-            servicesContainer.style.transform = `translateZ(0) translateY(${containerOffset}px)`;
-        }
+        // Убираем параллакс для контейнера (заголовок остается на месте)
+        // const containerOffset = (scrollProgress - 0.5) * 50;
+        // if (servicesContainer) {
+        //     servicesContainer.style.transform = `translateZ(0) translateY(${containerOffset}px)`;
+        // }
         
         // Параллакс для изображений
         if (servicesImages) {
