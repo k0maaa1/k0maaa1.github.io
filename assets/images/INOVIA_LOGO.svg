@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1117.09 1117.09">
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        font-family: Avenir-Black, Avenir;
+        font-weight: 800;
+      }
+
+      .st0, .st1 {
+        font-size: 91.97px;
+        letter-spacing: .17em;
+      }
+
+      .st1 {
+        font-family: Avenir-Light, Avenir;
+        font-weight: 300;
+      }
+    </style>
+  </defs>
+  <rect x="126.8" y="399.69" width="73.11" height="392.94"/>
+  <rect x="354.31" y="584.85" width="73.11" height="207.79"/>
+  <rect x="248.07" y="613.29" width="73.11" height="285.58" transform="translate(1040.71 471.45) rotate(90)"/>
+  <rect x="354.31" y="399.69" width="73.11" height="73.11"/>
+  <polygon points="51.96 504.5 51.96 420.08 390.86 224.43 390.86 308.84 51.96 504.5"/>
+  <rect x="427.41" y="766.46" width="149.49" height="26.17"/>
+  <rect x="405.06" y="719.53" width="158.76" height="26.17"/>
+  <rect x="216.85" y="425.55" width="693.93" height="26.17" transform="translate(125.18 1002.45) rotate(-90)"/>
+  <rect x="309.11" y="583.08" width="693.93" height="26.17" transform="translate(59.91 1252.24) rotate(-90)"/>
+  <rect x="589.64" y="766.46" width="79.52" height="26.17"/>
+  <rect x="589.64" y="719.53" width="79.52" height="26.17"/>
+  <rect x="681.9" y="719.53" width="337.74" height="26.17"/>
+  <rect x="681.9" y="766.46" width="386.76" height="26.17"/>
+  <polygon points="576.9 386.03 389.84 278.04 376.76 300.7 576.9 416.26 576.9 386.03"/>
+  <polygon points="589.64 393.39 589.64 423.61 669.16 469.52 669.16 439.3 589.64 393.39"/>
+  <polygon points="589.52 339.15 589.52 369.37 669.16 415.36 669.16 385.13 589.52 339.15"/>
+  <polygon points="576.78 331.8 390.81 224.43 377.72 247.09 576.78 362.02 576.78 331.8"/>
+  <text class="st0" transform="translate(126.61 902.91)"><tspan x="0" y="0">ADMARA</tspan></text>
+  <text class="st1" transform="translate(678.99 902.89)"><tspan x="0" y="0">INOVIA</tspan></text>
+  <polygon points="938.16 594.6 681.9 446.65 681.9 476.88 938.16 624.83 938.16 594.6"/>
+  <polygon points="889.16 512.15 681.9 392.49 681.9 422.71 889.16 542.37 889.16 512.15"/>
+</svg>

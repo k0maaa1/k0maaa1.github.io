@@ -180,8 +180,8 @@ button, .btn {
 }
 
 .dropdown-menu a:hover {
-    background: rgba(255, 173, 1, 0.1);
-    border-left-color: #FFAD01;
+    background: rgba(181, 152, 122, 0.1);
+    border-left-color: #B5987A;
     padding-left: 25px;
 }
 
@@ -213,7 +213,7 @@ button, .btn {
     right: 0px; /* Вместо margin-right */
     width: auto; /* Убираем width: 100% */
     z-index: 1000;
-    padding: 20px 150px; 
+    padding: 15px 150px; 
     box-sizing: border-box;
     backdrop-filter: blur(15px);
     background: rgba(0, 0, 0, 0.3);
@@ -226,24 +226,20 @@ button, .btn {
     align-items: center;
     max-width: 1610px;
     margin: 0 auto;
-
     position: relative;
+    padding: 0 2rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    
-
+    flex-shrink: 0; /* Предотвращает сжатие логотипа */
 }
 
-.logo img {
-    height: 70px;
-}
-
-.logo-icon {
-    font-size: 1.5rem;
+.logo svg {
+    height: 90px;
+    width: auto; /* Сохраняет пропорции */
+    fill: white; /* Изменяет цвет SVG на белый */
 }
 
 .nav-menu {
@@ -438,7 +434,7 @@ button, .btn {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, #FFAD02 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #B5987A 50%, transparent 100%);
 }
 
 .advantages-container {
@@ -497,7 +493,7 @@ button, .btn {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 173, 2, 0.1);
+    border: 1px solid rgba(181, 152, 122, 0.1);
 }
 
 .advantage-item::before {
@@ -507,7 +503,7 @@ button, .btn {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #FFAD02, #ffba26);
+    background: linear-gradient(90deg, #B5987A, #B5987A);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -515,7 +511,7 @@ button, .btn {
 .advantage-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 173, 2, 0.3);
+    border-color: rgba(181, 152, 122, 0.3);
     background: linear-gradient(135deg, #333333 0%, #444444 100%);
 }
 
@@ -530,18 +526,20 @@ button, .btn {
     align-items: center;
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, rgba(255, 173, 2, 0.15), rgba(255, 186, 38, 0.15));
+    background: linear-gradient(135deg, rgba(181, 152, 122, 0.15), rgba(181, 152, 122, 0.15));
     border-radius: 50%;
     margin: 0 auto 20px;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 173, 2, 0.2);
+    border: 2px solid rgba(181, 152, 122, 0.2);
+
 }
 
 .advantage-item:hover .advantage-icon {
-    background: linear-gradient(135deg, rgba(255, 173, 2, 0.25), rgba(255, 186, 38, 0.25));
+    background: linear-gradient(135deg, rgba(181, 152, 122, 0.25), rgba(181, 152, 122, 0.25));
+
     transform: scale(1.1);
-    border-color: rgba(255, 173, 2, 0.4);
-    box-shadow: 0 0 20px rgba(255, 173, 2, 0.3);
+    border-color: rgba(181, 152, 122, 0.4);
+    box-shadow: 0 0 20px rgba(181, 152, 122, 0.3);
 }
 
 .advantage-icon svg {
@@ -643,9 +641,12 @@ button, .btn {
 .mobile-logo {
     display: flex;
     align-items: center;
-
 }
 
+.mobile-logo svg {
+    width: 100px;
+    height: auto;
+}
 
 /* Адаптивность */
 @media (max-width: 768px) {
@@ -894,9 +895,9 @@ button, .btn {
 
 .form-input:focus {
     outline: none;
-    border-color: #FFAD02;
+    border-color: #B5987A;
     background: white;
-    box-shadow: 0 0 0 3px rgba(255, 173, 1, 0.1);
+    box-shadow: 0 0 0 3px rgba(181, 152, 122, 0.1);
 }
 
 .form-textarea {
@@ -912,9 +913,9 @@ button, .btn {
 
 .form-textarea:focus {
     outline: none;
-    border-color: #FFAD02;
+    border-color: #B5987A;
     background: white;
-    box-shadow: 0 0 0 3px rgba(255, 173, 1, 0.1);
+    box-shadow: 0 0 0 3px rgba(181, 152, 122, 0.1);
 }
 
 .form-checkbox {
@@ -936,7 +937,7 @@ button, .btn {
 }
 
 .form-submit-btn {
-    background: #FFAD02;
+    background: #B5987A;
     color: white;
     border: none;
     padding: 15px 30px;
@@ -948,23 +949,23 @@ button, .btn {
     text-transform: uppercase;
     letter-spacing: 1px;
     animation: softGlow 3s ease-in-out infinite;
-    box-shadow: 0 4px 15px rgba(255, 173, 2, 0.3);
+    box-shadow: 0 4px 15px rgba(181, 152, 122, 0.3);
 }
 
 .form-submit-btn:hover {
-    background: #ffba26;
+    background: #B5987A;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 173, 1, 0.4);
+    box-shadow: 0 8px 25px rgba(181, 152, 122, 0.4);
     animation: none;
 }
 
 @keyframes softGlow {
     0%, 100% {
-        box-shadow: 0 4px 15px rgba(255, 173, 2, 0.3);
+        box-shadow: 0 4px 15px rgba(181, 152, 122, 0.3);
         opacity: 0.9;
     }
     50% {
-        box-shadow: 0 4px 20px rgba(255, 173, 2, 0.5), 0 0 15px rgba(255, 173, 2, 0.3);
+        box-shadow: 0 4px 20px rgba(181, 152, 122, 0.5), 0 0 15px rgba(181, 152, 122, 0.3);
         opacity: 1;
     }
 }
@@ -1021,7 +1022,7 @@ button, .btn {
 
 .btn-primary {
     display: flex;
-    background: #FFAD01;
+    background: #B5987A;
     color: #000;
     font-weight: 400;
     gap: 10px;
@@ -1030,7 +1031,7 @@ button, .btn {
 }
 
 .btn-primary:hover {
-    box-shadow: 0 4px 15px rgba(255, 173, 1, 0.4);
+    box-shadow: 0 4px 15px rgba(181, 152, 122, 0.4);
     transform: translateY(-2px);
 }
 
@@ -1046,11 +1047,11 @@ button, .btn {
 }
 
 .btn-secondary:hover {
-    background: #FFAD01;
+    background: #B5987A;
     color: #000;
     fill: #000;
     transform: translateY(-2px);
-    border: 1px solid #FFAD01;
+    border: 1px solid #B5987A;
 }
 
 /* Hero Arrow Animation */
@@ -1059,29 +1060,29 @@ button, .btn {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    color: #FFAD01;
+    color: #B5987A;
     animation: glowPulse 2s ease-in-out infinite, bounce 2s ease-in-out infinite;
     cursor: pointer;
     z-index: 10;
 }
 
 .hero-arrow svg {
-    filter: drop-shadow(0 0 10px #FFAD01);
+    filter: drop-shadow(0 0 10px #B5987A);
     transition: all 0.3s ease;
 }
 
 .hero-arrow:hover svg {
-    filter: drop-shadow(0 0 20px #FFAD01);
+    filter: drop-shadow(0 0 20px #B5987A);
     transform: scale(1.1);
 }
 
 @keyframes glowPulse {
     0%, 100% {
-        filter: drop-shadow(0 0 5px #FFAD01);
+        filter: drop-shadow(0 0 5px #B5987A);
         opacity: 0.8;
     }
     50% {
-        filter: drop-shadow(0 0 25px #FFAD01) drop-shadow(0 0 35px #FFAD01);
+        filter: drop-shadow(0 0 25px #B5987A) drop-shadow(0 0 35px #B5987A);
         opacity: 1;
     }
 }
@@ -1333,7 +1334,7 @@ button, .btn {
 }
 
 .btn-about {
-    background: #FFAD01;
+    background: #B5987A;
     color: #ffffff;
     fill: #fff;
     padding: 1rem 2rem;
@@ -1347,7 +1348,7 @@ button, .btn {
 }
 
 .btn-about:hover {
-    box-shadow: 0 0 20px #ffbb4d60;
+    box-shadow: 0 0 20px rgba(181, 152, 122, 0.6);
     transform: translateY(-2px);
 }
 
@@ -1600,7 +1601,7 @@ button, .btn {
 /* Services Tabs Section с параллакс эффектом */
 .services-tabs {
     padding: 150px 150px;
-    background: #000;
+    background: #272727;
     color: #fff;
     overflow: hidden;
 
@@ -1781,13 +1782,17 @@ button, .btn {
     transform: translateY(-2px) translateZ(5px);
 }
 
-/* Вертикальное расположение табов с параллакс эффектом */
+/* Левая часть с табами */
 .services-tabs-vertical {
+    width: 100%;
+    max-width: 600px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 0;
     align-items: flex-start;
-    max-width: 1650px;
     
     /* Показываем контейнер сразу без анимации */
     opacity: 1;
@@ -1898,6 +1903,7 @@ button, .btn {
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: block;
     position: relative;
+    white-space: nowrap;
     
     z-index: 2;
     transform: translateX(0);
@@ -1910,10 +1916,10 @@ button, .btn {
 }
 
 .service-tab-vertical:hover .service-word-vertical {
-    color: #FFAD01;
+    color: #B5987A;
     transform: translateX(20px) translateZ(3px);
     font-size: 40px;
-    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    /* text-shadow: 0 10px 30px #B5987A; */
 }
 
 /* Остальные слова становятся еще темнее при наведении на любое */
@@ -1934,11 +1940,11 @@ button, .btn {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #FFAD01 0%, rgba(255, 208, 107, 0.5) 100%);
+    background: linear-gradient(90deg, #B5987A 0%, rgba(181, 152, 122, 0.5) 100%);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1;
     transform: translateZ(5px);
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+    /* box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3); */
 }
 
 .service-tab-vertical:hover::after {
@@ -1981,6 +1987,7 @@ button, .btn {
     /* Показываем контейнер сразу без анимации */
     opacity: 1;
     transform: translateX(0);
+    z-index: 1;
 }
 
 /* Убираем правила анимации, которые мешают hover-эффектам */
@@ -1999,12 +2006,14 @@ button, .btn {
 /* Стили для изображений в контейнере справа */
 .services-images .service-image {
     position: absolute;
+    top: 50%;
+    left: 50%;
     display: flex;
     width: 700px;
     height: 700px;
     align-items: center;
     opacity: 0;
-    transform: translateX(30px) scale(0.95);
+    transform: translate(-50%, -50%) translateX(30px) scale(0.95);
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 20px;
     overflow: hidden;
@@ -2013,7 +2022,7 @@ button, .btn {
 
 .services-images .service-image.active {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translate(-50%, -50%) translateX(0) scale(1);
 }
 
 .services-images .service-image img {
@@ -2105,10 +2114,119 @@ button, .btn {
     }
 }
 
-/* Responsive с сохранением параллакс эффектов */
+/* Улучшенные адаптивные стили */
+
+/* Большие планшеты и маленькие десктопы (1024px - 1200px) */
+@media (max-width: 1200px) {
+    .services-tabs {
+        padding: 120px 80px;
+    }
+    
+    .services-content {
+        gap: 60px;
+        min-height: 450px;
+    }
+    
+    .services-images {
+        right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 450px;
+        height: 450px;
+    }
+    
+    .services-images .service-image {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .services-tabs-vertical {
+        max-width: 500px;
+    }
+    
+    .services-main-title {
+        font-size: 36px;
+    }
+    
+    .service-word-vertical {
+        font-size: 28px;
+    }
+    
+    .service-tab-vertical:hover .service-word-vertical {
+        font-size: 34px;
+    }
+}
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .services-tabs {
+        padding: 100px 60px;
+        perspective: 800px;
+    }
+    
+    .services-header {
+        margin-bottom: 60px;
+    }
+    
+    .services-subtitle {
+        font-size: 24px;
+        gap: 15px;
+    }
+    
+    .services-subtitle::before {
+        width: 100px;
+    }
+    
+    .services-main-title {
+        font-size: 32px;
+    }
+    
+    .services-content {
+        gap: 40px;
+        min-height: 400px;
+    }
+    
+    .services-images {
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 350px;
+        height: 350px;
+    }
+    
+    .services-images .service-image {
+        width: 320px;
+        height: 320px;
+        border-radius: 16px;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    }
+    
+    .services-images .service-image img {
+        border-radius: 16px;
+    }
+    
+    .services-tabs-vertical {
+        max-width: 400px;
+    }
+    
+    .service-word-vertical {
+        font-size: 26px;
+    }
+    
+    .service-tab-vertical:hover .service-word-vertical {
+        font-size: 30px;
+        transform: translateX(15px) translateZ(3px);
+    }
+    
+    .service-tab-vertical:hover::after {
+        width: 250px;
+    }
+}
+
+/* Маленькие планшеты (600px - 768px) */
 @media (max-width: 768px) {
     .services-tabs {
-        padding: 60px 0;
+        padding: 80px 40px;
         height: auto;
         perspective: 500px;
     }
@@ -2117,33 +2235,33 @@ button, .btn {
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         transform: translateZ(5px) scale(0.995);
     }
     
     .services-subtitle {
-        font-size: 16px;
+        font-size: 18px;
         letter-spacing: 1px;
-        gap: 10px;
+        gap: 12px;
         position: relative;
         top: 0;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         white-space: nowrap;
         overflow: visible;
     }
     
     .services-subtitle::before {
-        width: 60px;
+        width: 80px;
     }
     
     .services-main-title {
-        font-size: 28px;
-        line-height: 1.1;
+        font-size: 26px;
+        line-height: 1.2;
     }
     
     .services-content {
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
         align-items: stretch;
         min-height: auto;
     }
@@ -2159,7 +2277,7 @@ button, .btn {
     
     .service-tab-vertical {
         position: relative;
-        padding: 20px 0;
+        padding: 25px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         cursor: pointer;
         transition: all 0.3s ease;
@@ -2175,17 +2293,20 @@ button, .btn {
     
     .service-tab-vertical.mobile-active {
         background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        margin: 5px 0;
     }
     
     .service-word-vertical {
-        font-size: 24px;
+        font-size: 22px;
         display: block;
         transition: all 0.3s ease;
+        line-height: 1.3;
     }
     
     .service-tab-vertical.mobile-active .service-word-vertical {
-        color: #fff;
-        transform: translateX(10px);
+        color: #B5987A;
+        transform: translateX(15px);
     }
     
     .service-tab-vertical:hover {
@@ -2193,8 +2314,9 @@ button, .btn {
     }
     
     .service-tab-vertical:hover .service-word-vertical {
-        font-size: 28px;
+        font-size: 26px;
         transform: translateX(20px) translateZ(5px);
+        color: #B5987A;
     }
     
     /* Показываем и стилизуем мобильные изображения внутри табов */
@@ -2202,89 +2324,79 @@ button, .btn {
         display: block;
         position: static;
         width: 100%;
-        height: 200px;
-        margin-top: 15px;
+        height: 220px;
+        margin-top: 20px;
         opacity: 0;
         max-height: 0;
         overflow: hidden;
         transition: all 0.4s ease;
-        border-radius: 8px;
+        border-radius: 12px;
     }
     
     .service-tab-vertical.mobile-active .service-image {
         opacity: 1;
-        max-height: 200px;
+        max-height: 220px;
     }
     
     .service-tab-vertical .service-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 12px;
     }
     
-    /* Скрываем контейнер изображений справа на мобильных */
+    /* Скрываем контейнер изображений справа на планшетах */
     .services-images {
         display: none;
     }
     
-    /* Overlay для мобильных изображений */
+    /* Overlay для планшетных изображений */
     .image-overlay {
-        padding: 15px;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+        padding: 20px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
     }
     
     .image-overlay h3 {
-        font-size: 18px;
-        margin-bottom: 5px;
+        font-size: 20px;
+        margin-bottom: 8px;
+        font-weight: 600;
     }
     
     .image-overlay p {
-        font-size: 12px;
-        line-height: 1.3;
-    }
-    
-    /* Активное состояние для мобильных */
-    .service-tab-vertical.active .service-word-vertical {
-        color: #fff;
-        transform: translateX(50px) translateZ(10px);
-        font-size: 72px;
-        text-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-    }
-    
-    .service-tab-vertical.active::after {
-        width: 200px;
+        font-size: 14px;
+        line-height: 1.4;
     }
 }
 
-@media (max-width: 480px) {
+/* Мобильные устройства (до 600px) */
+@media (max-width: 600px) {
     .services-tabs {
-        perspective: 300px;
-        padding: 40px 0;
+        padding: 60px 20px;
+        perspective: 400px;
+    }
+    
+    .services-header {
+        margin-bottom: 40px;
     }
     
     .services-subtitle {
-        font-size: 14px;
-        letter-spacing: 0.5px;
-        gap: 8px;
-        position: relative;
-        top: 0;
-        margin-bottom: 8px;
-        white-space: nowrap;
-        overflow: visible;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        gap: 10px;
+        margin-bottom: 12px;
     }
     
     .services-subtitle::before {
-        width: 40px;
+        width: 60px;
     }
     
     .services-main-title {
-        font-size: 22px;
-        line-height: 1.1;
+        font-size: 24px;
+        line-height: 1.2;
     }
     
     .service-tab-vertical {
-        padding: 15px 0;
+        padding: 20px 0;
     }
     
     .service-word-vertical {
@@ -2296,18 +2408,87 @@ button, .btn {
         transform: translateX(15px) translateZ(3px);
     }
     
-    .service-image {
-        height: 180px;
+    .service-tab-vertical .service-image {
+        height: 200px;
+        margin-top: 15px;
         border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
     
-    .service-image.mobile-active {
+    .service-tab-vertical.mobile-active .service-image {
+        max-height: 200px;
+    }
+    
+    .service-tab-vertical .service-image img {
+        border-radius: 10px;
+    }
+    
+    .image-overlay {
+        padding: 15px;
+    }
+    
+    .image-overlay h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+    
+    .image-overlay p {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+}
+
+/* Очень маленькие мобильные устройства (до 480px) */
+@media (max-width: 480px) {
+    .services-tabs {
+        padding: 50px 15px;
+        perspective: 300px;
+    }
+    
+    .services-header {
+        margin-bottom: 35px;
+    }
+    
+    .services-subtitle {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .services-subtitle::before {
+        width: 40px;
+    }
+    
+    .services-main-title {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+    
+    .service-tab-vertical {
+        padding: 18px 0;
+    }
+    
+    .service-word-vertical {
+        font-size: 18px;
+    }
+    
+    .service-tab-vertical:hover .service-word-vertical {
+        font-size: 22px;
+        transform: translateX(12px) translateZ(3px);
+    }
+    
+    .service-tab-vertical .service-image {
+        height: 180px;
+        margin-top: 12px;
+        border-radius: 8px;
+    }
+    
+    .service-tab-vertical.mobile-active .service-image {
         max-height: 180px;
     }
     
-    .service-image img {
-        border-radius: 10px;
+    .service-tab-vertical .service-image img {
+        border-radius: 8px;
     }
     
     .image-overlay {
@@ -2316,29 +2497,141 @@ button, .btn {
     
     .image-overlay h3 {
         font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    .image-overlay p {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    .service-tab-vertical.mobile-active .service-word-vertical {
+        transform: translateX(12px);
+    }
+    
+    .service-tab-vertical:hover::after {
+        width: 120px;
+    }
+}
+
+/* Очень маленькие экраны (до 360px) */
+@media (max-width: 360px) {
+    .services-tabs {
+        padding: 40px 10px;
+    }
+    
+    .services-subtitle {
+        font-size: 12px;
+        gap: 6px;
+    }
+    
+    .services-subtitle::before {
+        width: 30px;
+    }
+    
+    .services-main-title {
+        font-size: 18px;
+    }
+    
+    .service-word-vertical {
+        font-size: 16px;
+    }
+    
+    .service-tab-vertical:hover .service-word-vertical {
+        font-size: 20px;
+        transform: translateX(10px) translateZ(2px);
+    }
+    
+    .service-tab-vertical .service-image {
+        height: 160px;
+        margin-top: 10px;
+    }
+    
+    .service-tab-vertical.mobile-active .service-image {
+        max-height: 160px;
+    }
+    
+    .image-overlay {
+        padding: 10px;
+    }
+    
+    .image-overlay h3 {
+        font-size: 14px;
+        margin-bottom: 4px;
     }
     
     .image-overlay p {
         font-size: 11px;
     }
-    
-    .service-tab-vertical.active .service-word-vertical {
-        font-size: 24px;
-        transform: translateX(15px);
+}
+
+/* Улучшения для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .service-tab-vertical:hover {
+        transform: none;
     }
     
-    .service-tab-vertical.active::after {
-        width: 150px;
+    .service-tab-vertical:active {
+        transform: translateZ(20px) scale(1.02);
+        background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .service-tab-vertical:active .service-word-vertical {
+        color: #B5987A;
+        transform: translateX(10px);
+    }
+}
+
+/* Улучшения производительности для мобильных */
+@media (max-width: 768px) {
+    .services-tabs {
+        transform-style: flat;
+        perspective: none;
+    }
+    
+    .service-tab-vertical {
+        transform: none;
+        will-change: auto;
+    }
+    
+    .service-tab-vertical:hover {
+        transform: none;
+    }
+    
+    .services-header {
+        transform: none;
+    }
+    
+    .services-tabs-vertical {
+        transform: none;
+    }
+}
+
+/* Улучшения производительности для анимаций */
+@media (prefers-reduced-motion: reduce) {
+    .service-tab-vertical,
+    .service-word-vertical,
+    .service-image {
+        transition: none;
+    }
+    
+    .services-tabs {
+        perspective: none;
+        transform-style: flat;
+    }
+    
+    .service-tab-vertical {
+        transform: none;
     }
 }
 
 
     
 
-/* Testimonials Section - New Design */
+/* Testimonials Section - Полная адаптивность */
 .testimonials-section {
     padding: 100px 150px;
-    background: #020202;
+    background: #272727;
     color: #fff;
     min-height: 70vh;
     border-top: #888 1px solid;
@@ -2393,24 +2686,25 @@ button, .btn {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid #2A2829;
+    border: 2px solid #515151;
     background: transparent;
-    color: #2A2829;
+    color: #515151;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    touch-action: manipulation;
 }
 
 .testimonial-nav-btn:hover {
-    border-color: #FFAD01;
-    color: #FFAD01;
+    border-color: #B5987A;
+    color: #B5987A;
 }
 
 .testimonial-nav-btn.active {
-    background: #FFAD01;
-    border-color: #FFAD01;
+    background: #B5987A;
+    border-color: #B5987A;
     color: #000;
 }
 
@@ -2447,17 +2741,13 @@ button, .btn {
 .testimonial-image {
     width: 100%;
     height: 100%;
-
-
     overflow: visible;
-    
 }
 
 .testimonial-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-
 }
 
 .testimonials-right {
@@ -2469,7 +2759,7 @@ button, .btn {
 
 .quote-icon {
     font-size: 120px;
-    color: #FFAD01;
+    color: #B5987A;
     font-family: serif;
     line-height: 0.8;
     margin-bottom: 30px;
@@ -2508,33 +2798,75 @@ button, .btn {
 .author-name {
     font-size: 20px;
     font-weight: 700;
-    color: #FFAD01;
+    color: #B5987A;
     letter-spacing: 2px;
     margin: 0;
 }
 
-/* Responsive Design */
+/* Адаптивность для больших экранов */
+@media (max-width: 1400px) {
+    .testimonials-section {
+        padding: 80px 100px;
+    }
+    
+    .testimonials-content {
+        gap: 60px;
+    }
+    
+    .testimonials-title {
+        font-size: 38px;
+    }
+    
+    .testimonial-text {
+        font-size: 22px;
+    }
+}
+
+/* Адаптивность для средних экранов */
 @media (max-width: 1200px) {
+    .testimonials-section {
+        padding: 70px 80px;
+    }
+    
     .testimonials-content {
         grid-template-columns: 1fr 300px 1fr;
         gap: 40px;
     }
     
     .testimonial-slider {
-        width: 250px;
-        height: 350px;
+        width: 300px;
+        height: 300px;
+    }
+    
+    .testimonials-title {
+        font-size: 34px;
+    }
+    
+    .testimonial-text {
+        font-size: 20px;
     }
     
     .testimonial-text-slider {
-        min-height: 280px;
+        min-height: 220px;
+    }
+    
+    .quote-icon {
+        font-size: 100px;
     }
 }
 
+/* Адаптивность для планшетов */
 @media (max-width: 1024px) {
+    .testimonials-section {
+        padding: 60px 40px;
+    }
+    
     .testimonials-content {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
     }
     
     .testimonials-left {
@@ -2544,6 +2876,7 @@ button, .btn {
     
     .testimonials-center {
         order: 2;
+        margin: 20px 0;
     }
     
     .testimonials-right {
@@ -2557,14 +2890,35 @@ button, .btn {
         justify-content: center;
     }
     
+    .testimonial-slider {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .testimonials-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    
+    .testimonial-text {
+        font-size: 18px;
+        text-align: center;
+    }
+    
     .testimonial-text-slider {
         min-height: 200px;
     }
+    
+    .quote-icon {
+        font-size: 90px;
+    }
 }
 
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .testimonials-section {
-        padding: 60px 0;
+        padding: 50px 20px;
+        min-height: auto;
     }
     
     .testimonials-content {
@@ -2572,31 +2926,35 @@ button, .btn {
         flex-direction: column;
         gap: 30px;
         text-align: center;
+        padding: 0;
     }
     
     .testimonials-left {
         order: 1;
         align-items: center;
+        margin-bottom: 10px;
     }
     
     .testimonials-center {
         order: 2;
         position: relative;
         touch-action: pan-y;
+        margin: 20px 0;
     }
     
     .testimonials-right {
         order: 3;
         max-width: 100%;
-        padding: 0 20px;
+        padding: 0 10px;
         width: 100%;
+        align-items: center;
     }
     
     .testimonial-navigation {
         order: 4;
         display: flex;
         gap: 20px;
-        margin-top: 20px;
+        margin-top: 30px;
         justify-content: center;
         width: 100%;
     }
@@ -2609,21 +2967,23 @@ button, .btn {
         display: flex;
         order: 4;
         gap: 20px;
-        margin-top: 20px;
+        margin-top: 30px;
         justify-content: center;
         width: 100%;
     }
     
     .testimonials-title {
-        font-size: 32px;
+        font-size: 28px;
         text-align: center;
         margin-bottom: 20px;
+        line-height: 1.3;
     }
     
     .testimonial-slider {
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        height: 220px;
         margin: 0 auto;
+        border-radius: 15px;
     }
     
     .testimonial-image {
@@ -2642,20 +3002,33 @@ button, .btn {
     .testimonial-nav-btn {
         width: 50px;
         height: 50px;
-        border: 2px solid #FFAD01;
-        background: rgba(255, 173, 1, 0.1);
-        color: #FFAD01;
-        box-shadow: 0 4px 15px rgba(255, 173, 1, 0.2);
+        border: 2px solid #B5987A;
+        background: rgba(181, 152, 122, 0.1);
+        color: #B5987A;
+        box-shadow: 0 4px 15px rgba(181, 152, 122, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .testimonial-nav-btn:hover {
+        background: rgba(181, 152, 122, 0.2);
+        transform: scale(1.05);
     }
     
     .testimonial-nav-btn:active {
         transform: scale(0.95);
-        background: #FFAD01;
+        background: #B5987A;
         color: #000;
     }
     
+    .testimonial-nav-btn.active {
+        background: #B5987A;
+        color: #000;
+        box-shadow: 0 6px 20px rgba(181, 152, 122, 0.4);
+    }
+    
     .quote-icon {
-        font-size: 80px;
+        font-size: 70px;
         margin-bottom: 20px;
     }
     
@@ -2665,10 +3038,11 @@ button, .btn {
         max-width: 100%;
         width: 100%;
         text-align: center;
+        padding: 0 5px;
     }
     
     .testimonial-text-slider {
-        min-height: 180px;
+        min-height: 160px;
         width: 100%;
     }
     
@@ -2679,28 +3053,35 @@ button, .btn {
     .author-name {
         text-align: center;
         margin-top: 20px;
+        font-size: 18px;
     }
 }
 
+/* Адаптивность для маленьких мобильных устройств */
 @media (max-width: 480px) {
-    .mobile-nav {
-        margin-top: 15px;
-        gap: 15px;
+    .testimonials-section {
+        padding: 40px 15px;
     }
     
     .testimonials-content {
         gap: 25px;
-        padding: 0 15px;
+        padding: 0 5px;
     }
     
     .testimonial-slider {
         width: 180px;
         height: 180px;
+        border-radius: 12px;
     }
     
     .testimonial-navigation {
         gap: 15px;
-        margin-top: 0.5px;
+        margin-top: 25px;
+    }
+    
+    .mobile-nav {
+        margin-top: 25px;
+        gap: 15px;
     }
     
     .testimonial-nav-btn {
@@ -2709,16 +3090,18 @@ button, .btn {
     }
     
     .testimonials-title {
-        font-size: 28px;
+        font-size: 24px;
+        line-height: 1.2;
     }
     
     .testimonial-text {
         font-size: 15px;
-        padding: 0 10px;
+        padding: 0 5px;
+        line-height: 1.4;
     }
     
     .testimonial-text-slider {
-        min-height: 160px;
+        min-height: 140px;
     }
     
     .quote-icon {
@@ -2727,7 +3110,94 @@ button, .btn {
     }
     
     .testimonials-right {
-        padding: 0 15px;
+        padding: 0 10px;
+    }
+    
+    .author-name {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 360px) {
+    .testimonials-section {
+        padding: 35px 10px;
+    }
+    
+    .testimonial-slider {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .testimonials-title {
+        font-size: 22px;
+    }
+    
+    .testimonial-text {
+        font-size: 14px;
+    }
+    
+    .quote-icon {
+        font-size: 50px;
+    }
+    
+    .author-name {
+        font-size: 15px;
+    }
+    
+    .testimonial-nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Улучшения для touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .testimonial-nav-btn {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+    }
+    
+    .testimonial-nav-btn:hover {
+        transform: none;
+    }
+    
+    .testimonial-nav-btn:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Оптимизация производительности для мобильных */
+@media (max-width: 768px) {
+    .testimonial-slide,
+    .testimonial-text-slide {
+        will-change: opacity;
+        transform: translateZ(0);
+    }
+    
+    .testimonial-nav-btn {
+        will-change: transform, background-color;
+        transform: translateZ(0);
+    }
+}
+
+/* Поддержка prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .testimonial-slide,
+    .testimonial-text-slide,
+    .testimonial-nav-btn {
+        transition: none;
+    }
+}
+
+/* Поддержка высокой плотности пикселей */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .testimonial-image img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 }
 
@@ -2770,11 +3240,11 @@ button, .btn {
     padding: 18px 22px;
     font-size: 18px;
     font-weight: 600;
-    background-color: #FFAD01;
+    background-color: #B5987A;
 }
 
 .cta-btn:hover  {
- box-shadow: #FFAD01 0px 0px 25px;
+ box-shadow: #B5987A 0px 0px 25px;
 }
 
 .cta-image {
@@ -3038,14 +3508,14 @@ button, .btn {
 
 /* SMS Consent Modal Styles */
 .consent-link {
-    color: #FFAD02;
+    color: #B5987A;
     text-decoration: underline;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .consent-link:hover {
-    color: #ffba26;
+    color: #B5987A;
 }
 
 .modal {
@@ -3142,7 +3612,7 @@ button, .btn {
     background: #f8f9fa;
     padding: 16px;
     border-radius: 8px;
-    border-left: 4px solid #FFAD02;
+    border-left: 4px solid #B5987A;
     margin-top: 20px;
 }
 
@@ -3178,14 +3648,14 @@ button, .btn {
 }
 
 .modal-btn-primary {
-    background: #FFAD02;
+    background: #B5987A;
     color: white;
 }
 
 .modal-btn-primary:hover {
-    background: #ffba26;
+    background: #B5987A;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 173, 2, 0.3);
+    box-shadow: 0 4px 12px rgba(181, 152, 122, 0.3);
 }
 
 @keyframes modalFadeIn {
@@ -3419,7 +3889,7 @@ html {
 /* Projects Section Animation Enhancements */
 .projects-section {
     padding: 60px 150px;
-    background: #000;
+    background: #272727;
     color: #fff;
     /* Убираем начальную невидимость */
     opacity: 1;
