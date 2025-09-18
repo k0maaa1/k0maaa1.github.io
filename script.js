@@ -749,11 +749,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Hero Arrow Click Handler
 function initHeroArrow() {
     const heroArrow = document.querySelector('.hero-arrow');
-    const aboutSection = document.querySelector('.about-section');
+    const advantagesSection = document.querySelector('.advantages-section')
     
-    if (heroArrow && aboutSection) {
+    if (heroArrow && advantagesSection) {
         heroArrow.addEventListener('click', function() {
-            aboutSection.scrollIntoView({
+            advantagesSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });

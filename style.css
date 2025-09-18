@@ -504,20 +504,13 @@ button, .btn {
     right: 0;
     height: 4px;
     background: linear-gradient(90deg, #B5987A, #B5987A);
-    transform: scaleX(0);
+    
     transition: transform 0.3s ease;
 }
 
-.advantage-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    border-color: rgba(181, 152, 122, 0.3);
-    background: linear-gradient(135deg, #333333 0%, #444444 100%);
-}
 
-.advantage-item:hover::before {
-    transform: scaleX(1);
-}
+
+
 
 .advantage-icon {
     margin-bottom: 20px;
@@ -534,21 +527,10 @@ button, .btn {
 
 }
 
-.advantage-item:hover .advantage-icon {
-    background: linear-gradient(135deg, rgba(181, 152, 122, 0.25), rgba(181, 152, 122, 0.25));
 
-    transform: scale(1.1);
-    border-color: rgba(181, 152, 122, 0.4);
-    box-shadow: 0 0 20px rgba(181, 152, 122, 0.3);
-}
 
-.advantage-icon svg {
-    transition: all 0.3s ease;
-}
 
-.advantage-item:hover .advantage-icon svg {
-    transform: scale(1.1);
-}
+
 
 .advantage-title {
     font-size: 18px;
