@@ -853,3 +853,233 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Portfolio Modal Functionality
+const portfolioData = {
+    'herz-der-hauptstadt': {
+        title: 'Wohnkomplex Herz der Hauptstadt',
+        specs: ['72 m²', '3 Monate', 'Designer-Renovierung'],
+        images: [
+            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=2340&auto=format&fit=crop'
+        ]
+    },
+    'oktoberfeld': {
+        title: 'Wohnkomplex Oktoberfeld',
+        specs: ['73 m²', '2 Monate', 'Komplettrenovierung'],
+        images: [
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=2340&auto=format&fit=crop'
+        ]
+    },
+    'match-point': {
+        title: 'Wohnkomplex Match Point',
+        specs: ['87 m²', '3 Monate', 'Komplettrenovierung'],
+        images: [
+            'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?q=80&w=2340&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?q=80&w=2340&auto=format&fit=crop'
+        ]
+    }
+};
+
+let currentProject = null;
+let currentImageIndex = 0;
+
+// Initialize portfolio modal
+function initPortfolioModal() {
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const modal = document.getElementById('portfolioModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const prevBtn = document.getElementById('prevImage');
+    const nextBtn = document.getElementById('nextImage');
+
+    // Add click handlers to portfolio cards
+    portfolioCards.forEach((card, index) => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const projectKeys = Object.keys(portfolioData);
+            const projectKey = projectKeys[index];
+            if (projectKey) {
+                openPortfolioModal(projectKey);
+            }
+        });
+    });
+
+    // Close modal handlers
+    modalClose.addEventListener('click', closePortfolioModal);
+    modalOverlay.addEventListener('click', closePortfolioModal);
+    
+    // Navigation handlers
+    prevBtn.addEventListener('click', () => changeImage(-1));
+    nextBtn.addEventListener('click', () => changeImage(1));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('active')) {
+            if (e.key === 'Escape') closePortfolioModal();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        }
+    });
+}
+
+function openPortfolioModal(projectKey) {
+    const project = portfolioData[projectKey];
+    if (!project) return;
+
+    currentProject = project;
+    currentImageIndex = 0;
+
+    const modal = document.getElementById('portfolioModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSpecs = document.getElementById('modalSpecs');
+    
+    // Update modal content
+    modalTitle.textContent = project.title;
+    modalSpecs.innerHTML = project.specs.map(spec => 
+        `<span class="modal-spec">${spec}</span>`
+    ).join('');
+
+    // Generate thumbnails
+    generateThumbnails();
+    
+    // Show first image
+    updateMainImage();
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePortfolioModal() {
+    const modal = document.getElementById('portfolioModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProject = null;
+    currentImageIndex = 0;
+}
+
+function generateThumbnails() {
+    if (!currentProject) return;
+    
+    const thumbnailsContainer = document.getElementById('galleryThumbnails');
+    thumbnailsContainer.innerHTML = '';
+    
+    currentProject.images.forEach((image, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        thumbnail.innerHTML = `<img src="${image}" alt="Thumbnail ${index + 1}" />`;
+        
+        thumbnail.addEventListener('click', () => {
+            currentImageIndex = index;
+            updateMainImage();
+            updateThumbnailsActive();
+        });
+        
+        thumbnailsContainer.appendChild(thumbnail);
+    });
+}
+
+function updateMainImage() {
+    if (!currentProject) return;
+    
+    const mainImage = document.getElementById('mainImage');
+    mainImage.src = currentProject.images[currentImageIndex];
+    mainImage.alt = `${currentProject.title} - Foto ${currentImageIndex + 1}`;
+}
+
+function updateThumbnailsActive() {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentImageIndex);
+    });
+}
+
+function changeImage(direction) {
+    if (!currentProject) return;
+    
+    currentImageIndex += direction;
+    
+    if (currentImageIndex < 0) {
+        currentImageIndex = currentProject.images.length - 1;
+    } else if (currentImageIndex >= currentProject.images.length) {
+        currentImageIndex = 0;
+    }
+    
+    updateMainImage();
+    updateThumbnailsActive();
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initPortfolioModal();
+});
+
+// SMS Consent Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const openConsentModal = document.getElementById('openConsentModal');
+    const consentModal = document.getElementById('consentModal');
+    const closeConsentModal = document.getElementById('closeConsentModal');
+    const acceptConsent = document.getElementById('acceptConsent');
+    const declineConsent = document.getElementById('declineConsent');
+    const consentCheckbox = document.getElementById('consent');
+
+    // Open modal
+    if (openConsentModal) {
+        openConsentModal.addEventListener('click', function(e) {
+            e.preventDefault();
+            consentModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close modal function
+    function closeModal() {
+        consentModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal events
+    if (closeConsentModal) {
+        closeConsentModal.addEventListener('click', closeModal);
+    }
+
+    // Close on backdrop click
+    consentModal.addEventListener('click', function(e) {
+        if (e.target === consentModal) {
+            closeModal();
+        }
+    });
+
+    // Accept consent
+    if (acceptConsent) {
+        acceptConsent.addEventListener('click', function() {
+            consentCheckbox.checked = true;
+            closeModal();
+        });
+    }
+
+    // Decline consent
+    if (declineConsent) {
+        declineConsent.addEventListener('click', function() {
+            consentCheckbox.checked = false;
+            closeModal();
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && consentModal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+});
