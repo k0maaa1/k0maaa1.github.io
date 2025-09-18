@@ -13,7 +13,7 @@
 		<meta http-equiv="Expires" content="0" />
 
 		<title>Admara Renovation</title>
-		<link rel="stylesheet" href="style.css?v=9.0.5" />
+		<link rel="stylesheet" href="style.css?v=9.0.6" />
 	</head>
 	<body>
 		<header class="header">
@@ -435,14 +435,14 @@ Antistatisch<br>
 							data-service="glass"
 							data-image="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2340&auto=format&fit=crop"
 						>
-							<span class="service-word-vertical">Fassadenverkleidung & Fenster</span>
+							<span class="service-word-vertical">Fenster</span>
 							<div class="service-image" data-service="glass">
 								<img
 									src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2340&auto=format&fit=crop"
 									alt="Glass Works"
 								/>
 								<div class="image-overlay">
-									<h3>Fassadenverkleidung & Fenster</h3>
+									<h3>Fenster</h3>
 									<p>
 										Verschönern Sie die Außenfassade Ihres Hauses mit langlebiger Verkleidung und energieeffizienten Fenstern, die dauerhaften Mehrwert bieten.
 									</p>
@@ -474,69 +474,237 @@ Unsere Lösung versorgt Ihr Zuhause und Ihre Mobilität mit positiver Energie. E
 					<!-- Контейнер для изображений справа (только для desktop) -->
 					<div class="services-images">
 						<div class="service-image" data-service="interior">
-							<img
-								src="assets/images/services/1.jpg"
-								alt="Interior Design"
-							/>
-							<div class="image-overlay">
-								<h3>Planung und Umsetzung</h3>
-								<p>
-									Von der ersten Idee bis zur Schlüsselübergabe und auch darüber
-									hinaus stehen wir Ihnen mit unserer Fachkompetenz zur Seite.
-								</p>
+							<div class="carousel-container">
+								<div class="carousel-track">
+									<div class="carousel-slide active">
+										<img src="assets/images/services/1.jpg" alt="Interior Design 1" />
+										<div class="image-overlay">
+											<h3>Planung und Umsetzung</h3>
+											<p>Von der ersten Idee bis zur Schlüsselübergabe und auch darüber hinaus stehen wir Ihnen mit unserer Fachkompetenz zur Seite.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/2.jpg" alt="Interior Design 2" />
+										<div class="image-overlay">
+											<h3>Moderne Innenarchitektur</h3>
+											<p>Innovative Lösungen für zeitgemäße Wohnräume mit höchsten Qualitätsstandards.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/3.jpg" alt="Interior Design 3" />
+										<div class="image-overlay">
+											<h3>Individuelle Gestaltung</h3>
+											<p>Maßgeschneiderte Konzepte für Ihre persönlichen Wohnträume.</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Стрелки по бокам -->
+								<button class="carousel-nav-side prev-btn" aria-label="Vorheriges Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								<button class="carousel-nav-side next-btn" aria-label="Nächstes Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								
+								<!-- Точки внизу -->
+								<div class="carousel-dots">
+									<span class="dot active" data-slide="0"></span>
+									<span class="dot" data-slide="1"></span>
+									<span class="dot" data-slide="2"></span>
+								</div>
 							</div>
 						</div>
+
 						<div class="service-image" data-service="fitout">
-							<img
-								src="assets/images/services/2.jpg"
-								alt="Fit Out"
-							/>
-							<div class="image-overlay">
-								<h3>Renovierung und Sanierung</h3>
-								<p>
-									Eine weitere Stärke liegt im Renovierung und der Sanierung von
-									Bestandsgebäuden.
-								</p>
+							<div class="carousel-container">
+								<div class="carousel-track">
+									<div class="carousel-slide active">
+										<img src="assets/images/services/2.jpg" alt="Fit Out 1" />
+										<div class="image-overlay">
+											<h3>Renovierung und Sanierung</h3>
+											<p>Eine weitere Stärke liegt im Renovierung und der Sanierung von Bestandsgebäuden.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/4.jpg" alt="Fit Out 2" />
+										<div class="image-overlay">
+											<h3>Komplette Ausstattung</h3>
+											<p>Professionelle Fit-Out Lösungen für Gewerbe- und Wohnimmobilien.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/1.jpg" alt="Fit Out 3" />
+										<div class="image-overlay">
+											<h3>Hochwertige Materialien</h3>
+											<p>Verwendung erstklassiger Materialien für langlebige Ergebnisse.</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Стрелки по бокам -->
+								<button class="carousel-nav-side prev-btn" aria-label="Vorheriges Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								<button class="carousel-nav-side next-btn" aria-label="Nächstes Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								
+								<!-- Точки внизу -->
+								<div class="carousel-dots">
+									<span class="dot active" data-slide="0"></span>
+									<span class="dot" data-slide="1"></span>
+									<span class="dot" data-slide="2"></span>
+								</div>
 							</div>
 						</div>
+
 						<div class="service-image" data-service="joinery">
-							<img
-								src="assets/images/services/3.jpg"
-								alt="Joinery Works"
-							/>
-							<div class="image-overlay">
-								<h3>Moderne Farblösungen</h3>
-								<p>
-									Flüssigtapeten heben sich durch ihre besonderen Eigenschaften
-									deutlich von herkömmlichen Wandbeschichtungen ab: <br />
-									Leicht <br> aufzutragen <br> Nahtlos <br> Reparierbar <br> Elastisch <br> Kaschiert
-									Wandunebenheiten <br> Antistatisch
-								</p>
+							<div class="carousel-container">
+								<div class="carousel-track">
+									<div class="carousel-slide active">
+										<img src="assets/images/services/3.jpg" alt="Joinery Works 1" />
+										<div class="image-overlay">
+											<h3>Moderne Farblösungen</h3>
+											<p>Flüssigtapeten heben sich durch ihre besonderen Eigenschaften deutlich von herkömmlichen Wandbeschichtungen ab.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/5.jpg" alt="Joinery Works 2" />
+										<div class="image-overlay">
+											<h3>Maßgeschneiderte Möbel</h3>
+											<p>Individuelle Tischlerarbeiten nach Ihren Wünschen und Vorstellungen.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/1.jpg" alt="Joinery Works 3" />
+										<div class="image-overlay">
+											<h3>Präzise Handwerkskunst</h3>
+											<p>Höchste Qualität durch erfahrene Handwerker und moderne Technik.</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Стрелки по бокам -->
+								<button class="carousel-nav-side prev-btn" aria-label="Vorheriges Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								<button class="carousel-nav-side next-btn" aria-label="Nächstes Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								
+								<!-- Точки внизу -->
+								<div class="carousel-dots">
+									<span class="dot active" data-slide="0"></span>
+									<span class="dot" data-slide="1"></span>
+									<span class="dot" data-slide="2"></span>
+								</div>
 							</div>
 						</div>
+
 						<div class="service-image" data-service="glass">
-							<img
-								src="assets/images/services/4.jpg"
-								alt="Glass Works"
-							/>
-							<div class="image-overlay">
-								<h3>Fassadenverkleidung & Fenster</h3>
-								<p>
-									Verschönern Sie die Außenfassade Ihres Hauses mit langlebiger Verkleidung und energieeffizienten Fenstern, die dauerhaften Mehrwert bieten.
-								</p>
+							<div class="carousel-container">
+								<div class="carousel-track">
+									<div class="carousel-slide active">
+										<img src="assets/images/services/4.jpg" alt="Glass Works 1" />
+										<div class="image-overlay">
+											<h3>Fassadenverkleidung & Fenster</h3>
+											<p>Verschönern Sie die Außenfassade Ihres Hauses mit langlebiger Verkleidung und energieeffizienten Fenstern.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/1.jpg" alt="Glass Works 2" />
+										<div class="image-overlay">
+											<h3>Moderne Glaslösungen</h3>
+											<p>Innovative Glasarbeiten für zeitgemäße Architektur und Design.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/2.jpg" alt="Glass Works 3" />
+										<div class="image-overlay">
+											<h3>Energieeffiziente Fenster</h3>
+											<p>Hochwertige Fenster für optimale Wärmedämmung und Energieeinsparung.</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Стрелки по бокам -->
+								<button class="carousel-nav-side prev-btn" aria-label="Vorheriges Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								<button class="carousel-nav-side next-btn" aria-label="Nächstes Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								
+								<!-- Точки внизу -->
+								<div class="carousel-dots">
+									<span class="dot active" data-slide="0"></span>
+									<span class="dot" data-slide="1"></span>
+									<span class="dot" data-slide="2"></span>
+								</div>
 							</div>
 						</div>
+
 						<div class="service-image" data-service="metal">
-							<img
-								src="assets/images/services/5.jpg"
-								alt="Metal Works"
-							/>
-							<div class="image-overlay">
-								<h3>Solardach-Lösungen</h3>
-								<p>
-									Energie für Ihr Zuhause
-Unsere Lösung versorgt Ihr Zuhause und Ihre Mobilität mit positiver Energie. Entdecken Sie unsere maßgeschneiderte Energielösung für Privathaushalte, die erhebliche Kosteneinsparungen, Nachhaltigkeit und einfache Handhabung garantiert. Entdecken Sie alle Gründe, die Sonne zu lieben!
-								</p>
+							<div class="carousel-container">
+								<div class="carousel-track">
+									<div class="carousel-slide active">
+										<img src="assets/images/services/5.jpg" alt="Metal Works 1" />
+										<div class="image-overlay">
+											<h3>Solardach-Lösungen</h3>
+											<p>Unsere Lösung versorgt Ihr Zuhause und Ihre Mobilität mit positiver Energie.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/3.jpg" alt="Metal Works 2" />
+										<div class="image-overlay">
+											<h3>Metallkonstruktionen</h3>
+											<p>Robuste und langlebige Metallarbeiten für Industrie und Gewerbe.</p>
+										</div>
+									</div>
+									<div class="carousel-slide">
+										<img src="assets/images/services/4.jpg" alt="Metal Works 3" />
+										<div class="image-overlay">
+											<h3>Nachhaltige Energie</h3>
+											<p>Innovative Solarlösungen für eine umweltfreundliche Zukunft.</p>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Стрелки по бокам -->
+								<button class="carousel-nav-side prev-btn" aria-label="Vorheriges Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								<button class="carousel-nav-side next-btn" aria-label="Nächstes Bild">
+									<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+										<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</button>
+								
+								<!-- Точки внизу -->
+								<div class="carousel-dots">
+									<span class="dot active" data-slide="0"></span>
+									<span class="dot" data-slide="1"></span>
+									<span class="dot" data-slide="2"></span>
+								</div>
 							</div>
 						</div>
 					</div>

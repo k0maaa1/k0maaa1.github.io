@@ -83,11 +83,182 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Интерактивные изображения для секции services
+// Carousel functionality for service images
+function initServiceCarousels() {
+    const serviceImages = document.querySelectorAll('.service-image');
+    console.log('Found service images:', serviceImages.length);
+    
+    serviceImages.forEach((serviceImage, serviceIndex) => {
+        const carousel = serviceImage.querySelector('.carousel-container');
+        if (!carousel) {
+            console.log(`No carousel found for service ${serviceIndex}`);
+            return;
+        }
+        
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const dots = carousel.querySelectorAll('.dot');
+        
+        console.log(`Service ${serviceIndex}: Found ${slides.length} slides, ${dots.length} dots`);
+        
+        // Берём текст из соответствующей услуги (слева) и применяем ко всем слайдам этой карусели
+        const serviceKey = serviceImage.dataset.service;
+        const sourceOverlay = document.querySelector(`.service-tab-vertical[data-service="${serviceKey}"] .image-overlay`);
+        if (sourceOverlay) {
+            const titleText = sourceOverlay.querySelector('h3')?.textContent?.trim() || '';
+            const descText = sourceOverlay.querySelector('p')?.textContent?.trim() || '';
+            slides.forEach(slide => {
+                const overlay = slide.querySelector('.image-overlay');
+                if (!overlay) return;
+                const h3 = overlay.querySelector('h3');
+                const p = overlay.querySelector('p');
+                if (h3 && titleText) h3.textContent = titleText;
+                if (p && descText) p.textContent = descText;
+            });
+        } else {
+            console.warn(`No source overlay found for service "${serviceKey}"`);
+        }
+        
+        // Поддержка обеихх структур кнопок
+        let prevBtn = carousel.querySelector('.carousel-nav-side.prev-btn');
+        let nextBtn = carousel.querySelector('.carousel-nav-side.next-btn');
+        
+        console.log(`Service ${serviceIndex}: Found prev button:`, !!prevBtn, 'next button:', !!nextBtn);
+        
+        // Если не найдены новые кнопки, ищем старые
+        if (!prevBtn) {
+            prevBtn = carousel.querySelector('.carousel-btn.prev-btn');
+            console.log(`Service ${serviceIndex}: Fallback prev button found:`, !!prevBtn);
+        }
+        if (!nextBtn) {
+            nextBtn = carousel.querySelector('.carousel-btn.next-btn');
+            console.log(`Service ${serviceIndex}: Fallback next button found:`, !!nextBtn);
+        }
+        
+        // Проверяем что кнопки найдены
+        if (!prevBtn || !nextBtn) {
+            console.warn(`Carousel buttons not found for service ${serviceIndex}:`, {
+                prevBtn: !!prevBtn,
+                nextBtn: !!nextBtn,
+                service: serviceImage.dataset.service
+            });
+            return;
+        }
+        
+        // Берём трек карусели и валидируем
+        const track = carousel.querySelector('.carousel-track');
+        if (!track || slides.length === 0) {
+            console.warn(`Carousel track or slides not found for service ${serviceIndex}`);
+            return;
+        }
+        
+        let currentSlide = 0; // убрали переменные для автослайда
+        
+        // Функция показа нужного слайда + сдвиг трека
+        function showSlide(slideIndex) {
+            const normalizedIndex = ((slideIndex % slides.length) + slides.length) % slides.length;
+            console.log(`Service ${serviceIndex}: Showing slide ${normalizedIndex}`);
+            
+            // Полное перелистывание: каждый индекс = 100% ширины
+            track.style.transform = `translateX(-${normalizedIndex * 100}%)`;
+            
+            // Обновляем классы
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === normalizedIndex);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === normalizedIndex);
+            });
+            currentSlide = normalizedIndex;
+        }
+        
+        // Инициализация: показываем первый слайд
+        showSlide(0);
+        
+        // Функции навигации
+        function nextSlide() {
+            const next = currentSlide + 1;
+            console.log(`Service ${serviceIndex}: Next slide ${currentSlide} -> ${next}`);
+            showSlide(next);
+        }
+        function prevSlide() {
+            const prev = currentSlide - 1;
+            console.log(`Service ${serviceIndex}: Prev slide ${currentSlide} -> ${prev}`);
+            showSlide(prev);
+        }
+        
+        // Кнопки навигации (без автослайда)
+        prevBtn.addEventListener('click', (e) => {
+            console.log(`Service ${serviceIndex}: Prev button clicked`);
+            e.preventDefault();
+            e.stopPropagation();
+            prevSlide();
+        });
+        nextBtn.addEventListener('click', (e) => {
+            console.log(`Service ${serviceIndex}: Next button clicked`);
+            e.preventDefault();
+            e.stopPropagation();
+            nextSlide();
+        });
+        
+        // Точки (без автослайда)
+        dots.forEach((dot, dotIndex) => {
+            dot.addEventListener('click', (e) => {
+                console.log(`Service ${serviceIndex}: Dot ${dotIndex} clicked`);
+                e.preventDefault();
+                e.stopPropagation();
+                showSlide(dotIndex);
+            });
+        });
+        
+        // Свайпы (без автослайда)
+        let touchStartX = 0;
+        let touchEndX = 0;
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+        
+        // Клавиатура (без автослайда)
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextSlide();
+            }
+        });
+        
+        // Делаем карусель фокусируемой
+        carousel.setAttribute('tabindex', '0');
+        
+        console.log(`Service ${serviceIndex}: Carousel initialized without auto-play`);
+    });
+}
+
+// Updated initServicesImages function to work with carousel
 function initServicesImages() {
     const serviceTabs = document.querySelectorAll('.service-tab-vertical');
-    const serviceImages = document.querySelectorAll('.services-images .service-image'); // Исправляем селектор
+    const serviceImages = document.querySelectorAll('.services-images .service-image');
     
     if (!serviceTabs.length || !serviceImages.length) return;
+    
+    // Initialize carousels
+    initServiceCarousels();
     
     // Проверяем, мобильное ли устройство
     const isMobile = window.innerWidth <= 768;
@@ -97,7 +268,7 @@ function initServicesImages() {
         serviceTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const service = tab.getAttribute('data-service');
-                const targetImage = tab.querySelector('.service-image'); // Ищем изображение внутри таба
+                const targetImage = tab.querySelector('.service-image');
                 
                 // Проверяем, активен ли уже этот таб
                 const isActive = tab.classList.contains('mobile-active');
@@ -129,25 +300,32 @@ function initServicesImages() {
                 });
                 
                 // Показать соответствующее изображение
-                const targetImage = document.querySelector(`.services-images .service-image[data-service="${service}"]`); // Исправляем селектор
+                const targetImage = document.querySelector(`.services-images .service-image[data-service="${service}"]`);
                 if (targetImage) {
                     setTimeout(() => {
                         targetImage.classList.add('active');
+
+                        // Сброс карусели на первый слайд для показанного изображения
+                        const carousel = targetImage.querySelector('.carousel-container');
+                        if (carousel && typeof carousel.resetToFirst === 'function') {
+                            carousel.resetToFirst();
+                        } else if (carousel) {
+                            // Фолбэк: прямое обновление DOM
+                            const track = carousel.querySelector('.carousel-track');
+                            const slides = carousel.querySelectorAll('.carousel-slide');
+                            const dots = carousel.querySelectorAll('.dot');
+                            if (track && slides.length) {
+                                track.style.transform = 'translateX(0%)';
+                                slides.forEach((s, i) => s.classList.toggle('active', i === 0));
+                                dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+                            }
+                        }
                     }, 100);
-                }
-            });
-            
-            // Скрыть изображение при уходе курсора с конкретного таба
-            tab.addEventListener('mouseleave', () => {
-                const service = tab.getAttribute('data-service');
-                const targetImage = document.querySelector(`.services-images .service-image[data-service="${service}"]`); // Исправляем селектор
-                if (targetImage) {
-                    targetImage.classList.remove('active');
                 }
             });
         });
         
-        // Скрыть все изображения при уходе курсора с секции
+        // Скрыть все изображения только при полном уходе курсора из всей секции services-tabs
         const servicesSection = document.querySelector('.services-tabs');
         if (servicesSection) {
             servicesSection.addEventListener('mouseleave', () => {
@@ -162,7 +340,6 @@ function initServicesImages() {
     window.addEventListener('resize', () => {
         const newIsMobile = window.innerWidth <= 768;
         if (newIsMobile !== isMobile) {
-            // Перезапускаем функцию при смене режима
             location.reload();
         }
     });
@@ -636,5 +813,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-
