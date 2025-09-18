@@ -264,6 +264,74 @@ function initServicesImages() {
     // Initialize carousels
     initServiceCarousels();
     
+    // Переменная для отслеживания последней активной услуги
+    let lastActiveService = null;
+    let firstTabActivated = false;
+    
+    // Функция для активации услуги
+    function activateService(serviceKey, isAutoActivation = false) {
+        // Скрыть все изображения
+        serviceImages.forEach(img => {
+            img.classList.remove('active');
+        });
+        
+        // Убираем все активные классы со всех табов
+        serviceTabs.forEach(tab => {
+            tab.classList.remove('auto-active', 'permanently-active');
+        });
+        
+        // Показать соответствующее изображение
+        const targetImage = document.querySelector(`.services-images .service-image[data-service="${serviceKey}"]`);
+        const targetTab = document.querySelector(`.service-tab-vertical[data-service="${serviceKey}"]`);
+        
+        if (targetImage) {
+            targetImage.classList.add('active');
+            lastActiveService = serviceKey;
+            
+            // Если это автоактивация первой услуги, добавляем специальный класс
+            if (isAutoActivation && targetTab) {
+                targetTab.classList.add('auto-active');
+                firstTabActivated = true;
+            } else if (targetTab) {
+                // Для обычной активации добавляем permanently-active класс
+                targetTab.classList.add('permanently-active');
+            }
+
+            // Сброс карусели на первый слайд для показанного изображения
+            const carousel = targetImage.querySelector('.carousel-container');
+            if (carousel) {
+                const track = carousel.querySelector('.carousel-track');
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                const dots = carousel.querySelectorAll('.dot');
+                if (track && slides.length) {
+                    track.style.transform = 'translateX(0%)';
+                    slides.forEach((s, i) => s.classList.toggle('active', i === 0));
+                    dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+                }
+            }
+        }
+    }
+    
+    // Автоматическая активация первой услуги при появлении секции
+    const servicesSection = document.querySelector('.services-tabs');
+    if (servicesSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !lastActiveService) {
+                    // Активируем первую услугу только если еще ничего не было активировано
+                    const firstService = serviceTabs[0]?.getAttribute('data-service');
+                    if (firstService) {
+                        activateService(firstService, true); // true = автоактивация
+                    }
+                }
+            });
+        }, {
+            threshold: 0.3 // Активируем когда 30% секции видно
+        });
+        
+        observer.observe(servicesSection);
+    }
+    
     // Проверяем, мобильное ли устройство
     const isMobile = window.innerWidth <= 768;
     
@@ -288,6 +356,7 @@ function initServicesImages() {
                 if (!isActive && targetImage) {
                     tab.classList.add('mobile-active');
                     targetImage.classList.add('mobile-active');
+                    lastActiveService = service;
                 }
             });
         });
@@ -297,47 +366,14 @@ function initServicesImages() {
         serviceTabs.forEach(tab => {
             tab.addEventListener('mouseenter', () => {
                 const service = tab.getAttribute('data-service');
-                
-                // Скрыть все изображения
-                serviceImages.forEach(img => {
-                    img.classList.remove('active');
-                });
-                
-                // Показать соответствующее изображение
-                const targetImage = document.querySelector(`.services-images .service-image[data-service="${service}"]`);
-                if (targetImage) {
-                    setTimeout(() => {
-                        targetImage.classList.add('active');
-
-                        // Сброс карусели на первый слайд для показанного изображения
-                        const carousel = targetImage.querySelector('.carousel-container');
-                        if (carousel && typeof carousel.resetToFirst === 'function') {
-                            carousel.resetToFirst();
-                        } else if (carousel) {
-                            // Фолбэк: прямое обновление DOM
-                            const track = carousel.querySelector('.carousel-track');
-                            const slides = carousel.querySelectorAll('.carousel-slide');
-                            const dots = carousel.querySelectorAll('.dot');
-                            if (track && slides.length) {
-                                track.style.transform = 'translateX(0%)';
-                                slides.forEach((s, i) => s.classList.toggle('active', i === 0));
-                                dots.forEach((d, i) => d.classList.toggle('active', i === 0));
-                            }
-                        }
-                    }, 100);
-                }
+                // Убираем auto-active при наведении на любую услугу
+                serviceTabs.forEach(t => t.classList.remove('auto-active'));
+                activateService(service);
             });
         });
         
-        // Скрыть все изображения только при полном уходе курсора из всей секции services-tabs
-        const servicesSection = document.querySelector('.services-tabs');
-        if (servicesSection) {
-            servicesSection.addEventListener('mouseleave', () => {
-                serviceImages.forEach(img => {
-                    img.classList.remove('active');
-                });
-            });
-        }
+        // НЕ скрываем изображения при уходе курсора - оставляем последнюю выбранную
+        // Убираем mouseleave обработчик для сохранения последней активной услуги
     }
     
     // Обновляем логику при изменении размера окна

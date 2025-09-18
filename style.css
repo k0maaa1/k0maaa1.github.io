@@ -1930,6 +1930,72 @@ button, .btn {
     opacity: 1;
 }
 
+/* Активное состояние для первой услуги (как при hover) */
+.service-tab-vertical.auto-active {
+    transform: translateZ(20px) scale(1);
+}
+
+.service-tab-vertical.auto-active .service-word-vertical {
+    color: #B5987A;
+    transform: translateX(20px) translateZ(3px);
+    font-size: 32px;
+}
+
+.service-tab-vertical.auto-active::after {
+    width: 300px;
+    transform: translateZ(15px);
+}
+
+/* Добавляем класс для постоянно активной услуги */
+.service-tab-vertical.permanently-active {
+    transform: translateZ(20px) scale(1);
+}
+
+.service-tab-vertical.permanently-active .service-word-vertical {
+    color: #B5987A;
+    transform: translateX(20px) translateZ(3px);
+    font-size: 32px;
+}
+
+.service-tab-vertical.permanently-active::after {
+    width: 300px;
+    transform: translateZ(15px);
+}
+
+/* При наведении на любую услугу, убираем auto-active класс с первой */
+.services-tabs-vertical:hover .service-tab-vertical.auto-active:not(:hover) {
+    transform: translateZ(10px) scale(0.95);
+}
+
+.services-tabs-vertical:hover .service-tab-vertical.auto-active:not(:hover) .service-word-vertical {
+    color: #333;
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+    font-size: 28px;
+}
+
+.services-tabs-vertical:hover .service-tab-vertical.auto-active:not(:hover)::after {
+    width: 0;
+    transform: translateZ(5px);
+}
+
+/* При наведении на другие услуги, убираем permanently-active стили только с неактивных */
+.services-tabs-vertical:hover .service-tab-vertical.permanently-active:not(:hover) {
+    transform: translateZ(10px) scale(0.95);
+}
+
+.services-tabs-vertical:hover .service-tab-vertical.permanently-active:not(:hover) .service-word-vertical {
+    color: #333;
+    opacity: 1;
+    transform: translateX(0) translateZ(0);
+    font-size: 28px;
+}
+
+.services-tabs-vertical:hover .service-tab-vertical.permanently-active:not(:hover)::after {
+    width: 0;
+    transform: translateZ(5px);
+}
+
 /* Линия-подчеркивание при наведении с параллакс эффектом */
 .service-tab-vertical::after {
     content: '';
