@@ -590,154 +590,214 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Testimonials Slider
+// Testimonials Grid Slider
 function initTestimonialsSlider() {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const textSlides = document.querySelectorAll('.testimonial-text-slide');
+    const groups = document.querySelectorAll('.testimonials-group');
     const prevBtn = document.getElementById('prevTestimonial');
     const nextBtn = document.getElementById('nextTestimonial');
-    // Добавляем мобильные кнопки
-    const prevBtnMobile = document.getElementById('prevTestimonialMobile');
-    const nextBtnMobile = document.getElementById('nextTestimonialMobile');
-    const sliderContainer = document.querySelector('.testimonials-center');
-    let currentSlide = 0;
-    let autoSlideInterval;
+    let currentGroup = 0;
+    let autoSlideInterval = null;
     let isHovered = false;
-    
-    // Touch/Swipe variables
-    let startX = 0;
-    let startY = 0;
-    let distX = 0;
-    let distY = 0;
-    let threshold = 50; // minimum distance for swipe
-    let restraint = 100; // maximum distance perpendicular to swipe direction
-    let allowedTime = 300; // maximum time allowed to travel that distance
-    let elapsedTime = 0;
-    let startTime = 0;
+    let isInView = true; // Добавляем переменную для отслеживания видимости секции
 
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
+    function showGroup(index) {
+        groups.forEach((group, i) => {
+            group.classList.toggle('active', i === index);
         });
-        textSlides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
+        
+        // Обновляем состояние кнопок
+        if (prevBtn && nextBtn) {
+            prevBtn.classList.toggle('active', false);
+            nextBtn.classList.toggle('active', false);
+            
+            if (index === 0) {
+                prevBtn.style.opacity = '0.5';
+                nextBtn.style.opacity = '1';
+                nextBtn.classList.add('active');
+            } else if (index === groups.length - 1) {
+                prevBtn.style.opacity = '1';
+                nextBtn.style.opacity = '0.5';
+                prevBtn.classList.add('active');
+            } else {
+                prevBtn.style.opacity = '1';
+                nextBtn.style.opacity = '1';
+            }
+        }
     }
 
-    function nextSlide() {
-        if (currentSlide < slides.length - 1) {
-            currentSlide++;
+    function nextGroup() {
+        if (currentGroup < groups.length - 1) {
+            currentGroup++;
         } else {
-            currentSlide = 0;
+            currentGroup = 0;
         }
-        showSlide(currentSlide);
+        showGroup(currentGroup);
     }
 
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
+    function prevGroup() {
+        if (currentGroup > 0) {
+            currentGroup--;
         } else {
-            currentSlide = slides.length - 1;
+            currentGroup = groups.length - 1;
         }
-        showSlide(currentSlide);
+        showGroup(currentGroup);
     }
 
     function startAutoSlide() {
-        if (!isHovered) {
+        // Сначала останавливаем существующий интервал
+        stopAutoSlide();
+        
+        // Запускаем автослайд только если секция видна, не наведен курсор и есть группы
+        if (isInView && !isHovered && groups.length > 1) {
             autoSlideInterval = setInterval(() => {
-                nextSlide();
-            }, 5000);
+                if (isInView && !isHovered) { // Дополнительная проверка
+                    nextGroup();
+                }
+            }, 6000);
         }
     }
 
     function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
     }
 
-    // Touch event handlers
-    function handleTouchStart(e) {
-        const touchobj = e.changedTouches[0];
-        startX = touchobj.pageX;
-        startY = touchobj.pageY;
-        startTime = new Date().getTime();
-        stopAutoSlide();
-    }
-
-    function handleTouchMove(e) {
-        e.preventDefault(); // prevent scrolling when inside DIV
-    }
-
-    function handleTouchEnd(e) {
-        const touchobj = e.changedTouches[0];
-        distX = touchobj.pageX - startX;
-        distY = touchobj.pageY - startY;
-        elapsedTime = new Date().getTime() - startTime;
-        
-        if (elapsedTime <= allowedTime) {
-            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-                if (distX > 0) {
-                    // Swipe right - previous slide
-                    prevSlide();
+    // Intersection Observer для отслеживания видимости секции с отзывами
+    const testimonialsSection = document.querySelector('.testimonials-section');
+    if (testimonialsSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isInView = entry.isIntersecting;
+                
+                if (isInView) {
+                    // Секция видна - запускаем автослайд
+                    startAutoSlide();
                 } else {
-                    // Swipe left - next slide
-                    nextSlide();
+                    // Секция не видна - останавливаем автослайд
+                    stopAutoSlide();
+                }
+            });
+        }, {
+            threshold: 0.3 // Останавливаем когда 70% секции скрыто
+        });
+        
+        observer.observe(testimonialsSection);
+    }
+
+    // Обработчики кнопок
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextGroup();
+            setTimeout(() => {
+                if (!isHovered) {
+                    startAutoSlide();
+                }
+            }, 2000);
+        });
+        
+        nextBtn.addEventListener('mouseenter', () => {
+            isHovered = true;
+            stopAutoSlide();
+        });
+        
+        nextBtn.addEventListener('mouseleave', () => {
+            isHovered = false;
+            setTimeout(startAutoSlide, 100); // Небольшая задержка
+        });
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevGroup();
+            setTimeout(() => {
+                if (!isHovered) {
+                    startAutoSlide();
+                }
+            }, 2000);
+        });
+        
+        prevBtn.addEventListener('mouseenter', () => {
+            isHovered = true;
+            stopAutoSlide();
+        });
+        
+        prevBtn.addEventListener('mouseleave', () => {
+            isHovered = false;
+            setTimeout(startAutoSlide, 100); // Небольшая задержка
+        });
+    }
+
+    // Обработчики для карточек отзывов
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    testimonialCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            isHovered = true;
+            stopAutoSlide();
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            isHovered = false;
+            setTimeout(startAutoSlide, 100); // Небольшая задержка
+        });
+    });
+
+    // Touch/Swipe поддержка для мобильных
+    const container = document.querySelector('.testimonials-grid-container');
+    if (container) {
+        let startX = 0;
+        let startY = 0;
+        let distX = 0;
+        let distY = 0;
+        const threshold = 50;
+        const restraint = 100;
+        const allowedTime = 300;
+        let elapsedTime = 0;
+        let startTime = 0;
+
+        function handleTouchStart(e) {
+            const touchobj = e.changedTouches[0];
+            startX = touchobj.pageX;
+            startY = touchobj.pageY;
+            startTime = new Date().getTime();
+            stopAutoSlide();
+        }
+
+        function handleTouchMove(e) {
+            e.preventDefault();
+        }
+
+        function handleTouchEnd(e) {
+            const touchobj = e.changedTouches[0];
+            distX = touchobj.pageX - startX;
+            distY = touchobj.pageY - startY;
+            elapsedTime = new Date().getTime() - startTime;
+            
+            if (elapsedTime <= allowedTime) {
+                if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+                    if (distX > 0) {
+                        prevGroup();
+                    } else {
+                        nextGroup();
+                    }
                 }
             }
+            setTimeout(startAutoSlide, 2000);
         }
+
+        container.addEventListener('touchstart', handleTouchStart, { passive: false });
+        container.addEventListener('touchmove', handleTouchMove, { passive: false });
+        container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    }
+
+    // Инициализация
+    if (groups.length > 0) {
+        showGroup(currentGroup);
         startAutoSlide();
     }
-
-    // Функция для добавления обработчиков к кнопкам
-    function addButtonListeners(prevButton, nextButton) {
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                stopAutoSlide();
-                nextSlide();
-                setTimeout(startAutoSlide, 1000);
-            });
-            nextButton.addEventListener('mouseenter', () => {
-                isHovered = true;
-                stopAutoSlide();
-            });
-            nextButton.addEventListener('mouseleave', () => {
-                isHovered = false;
-                startAutoSlide();
-            });
-        }
-        
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                stopAutoSlide();
-                prevSlide();
-                setTimeout(startAutoSlide, 1000);
-            });
-            prevButton.addEventListener('mouseenter', () => {
-                isHovered = true;
-                stopAutoSlide();
-            });
-            prevButton.addEventListener('mouseleave', () => {
-                isHovered = false;
-                startAutoSlide();
-            });
-        }
-    }
-
-    // Добавляем обработчики для десктопных кнопок
-    addButtonListeners(prevBtn, nextBtn);
-    
-    // Добавляем обработчики для мобильных кнопок
-    addButtonListeners(prevBtnMobile, nextBtnMobile);
-
-    // Touch event listeners for swipe functionality
-    if (sliderContainer) {
-        sliderContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
-        sliderContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
-        sliderContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
-    }
-
-    // Initialize
-    showSlide(currentSlide);
-    startAutoSlide();
 }
 
 // Initialize when DOM is loaded
@@ -749,11 +809,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Hero Arrow Click Handler
 function initHeroArrow() {
     const heroArrow = document.querySelector('.hero-arrow');
-    const aboutSection = document.querySelector('.about-section');
+    const advantagesSection = document.querySelector('.advantages-section')
     
-    if (heroArrow && aboutSection) {
+    if (heroArrow && advantagesSection) {
         heroArrow.addEventListener('click', function() {
-            aboutSection.scrollIntoView({
+            advantagesSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -794,22 +854,252 @@ document.addEventListener('DOMContentLoaded', function() {
     initDropdown();
 });
 
+
+
+// Contact Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const openModalBtn = document.getElementById('openModalBtn');
+    const contactModal = document.getElementById('contactModal');
+    const closeModalBtn = contactModal?.querySelector('.modal-close');
+
+    // Open contact modal
+    if (openModalBtn && contactModal) {
+        openModalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            contactModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close modal function
+    function closeContactModal() {
+        if (contactModal) {
+            contactModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Close modal on X button click
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeContactModal);
+    }
+
+    // Close on backdrop click
+    if (contactModal) {
+        contactModal.addEventListener('click', function(e) {
+            if (e.target === contactModal) {
+                closeContactModal();
+            }
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && contactModal?.classList.contains('show')) {
+            closeContactModal();
+        }
+    });
+});
+
+// Portfolio Modal Functionality
+const portfolioData = {
+	'herz-der-hauptstadt': {
+		title: 'Wohnkomplex Herz der Hauptstadt',
+		specs: ['72 m²', '3 Monate', 'Designer-Renovierung'],
+		images: [
+			'/assets/images/portfolio/card3/1.jpg',
+			'/assets/images/portfolio/card3/2.jpg',
+			'/assets/images/portfolio/card3/3.jpg',
+			'/assets/images/portfolio/card3/4.jpg',
+		],
+	},
+	oktoberfeld: {
+		title: 'Wohnkomplex Oktoberfeld',
+		specs: ['73 m²', '2 Monate', 'Komplettrenovierung'],
+		images: [
+			'/assets/images/portfolio/card1/1.png',
+			'/assets/images/portfolio/card1/2.jpg',
+			'/assets/images/portfolio/card1/3.jpg',
+			'/assets/images/portfolio/card1/4.jpg',
+			'/assets/images/portfolio/card1/5.png',
+			'/assets/images/portfolio/card1/6.jpg',
+			'/assets/images/portfolio/card1/7.jpg',
+			'/assets/images/portfolio/card1/8.jpg',
+			'/assets/images/portfolio/card1/9.jpg',
+		],
+	},
+	'match-point': {
+		title: 'Wohnkomplex Match Point',
+		specs: ['87 m²', '3 Monate', 'Komplettrenovierung'],
+		images: [
+			'/assets/images/portfolio/card2/1.jpg',
+			'/assets/images/portfolio/card2/5.jpg',
+			'/assets/images/portfolio/card2/6.jpg',
+			'/assets/images/portfolio/card2/7.jpg',
+			'/assets/images/portfolio/card2/8.jpg',
+		],
+	},
+}
+
+let currentProject = null;
+let currentImageIndex = 0;
+
+// Initialize portfolio modal
+function initPortfolioModal() {
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    const modal = document.getElementById('portfolioModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const prevBtn = document.getElementById('prevImage');
+    const nextBtn = document.getElementById('nextImage');
+
+    // Add click handlers to portfolio cards
+    portfolioCards.forEach((card, index) => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const projectKeys = Object.keys(portfolioData);
+            const projectKey = projectKeys[index];
+            if (projectKey) {
+                openPortfolioModal(projectKey);
+            }
+        });
+    });
+
+    // Close modal handlers
+    modalClose.addEventListener('click', closePortfolioModal);
+    modalOverlay.addEventListener('click', closePortfolioModal);
+    
+    // Navigation handlers
+    prevBtn.addEventListener('click', () => changeImage(-1));
+    nextBtn.addEventListener('click', () => changeImage(1));
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('active')) {
+            if (e.key === 'Escape') closePortfolioModal();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        }
+    });
+}
+
+function openPortfolioModal(projectKey) {
+    const project = portfolioData[projectKey];
+    if (!project) return;
+
+    currentProject = project;
+    currentImageIndex = 0;
+
+    const modal = document.getElementById('portfolioModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSpecs = document.getElementById('modalSpecs');
+    
+    // Update modal content
+    modalTitle.textContent = project.title;
+    modalSpecs.innerHTML = project.specs.map(spec => 
+        `<span class="modal-spec">${spec}</span>`
+    ).join('');
+
+    // Generate thumbnails
+    generateThumbnails();
+    
+    // Show first image
+    updateMainImage();
+    
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePortfolioModal() {
+    const modal = document.getElementById('portfolioModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProject = null;
+    currentImageIndex = 0;
+}
+
+function generateThumbnails() {
+    if (!currentProject) return;
+    
+    const thumbnailsContainer = document.getElementById('galleryThumbnails');
+    thumbnailsContainer.innerHTML = '';
+    
+    currentProject.images.forEach((image, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        thumbnail.innerHTML = `<img src="${image}" alt="Thumbnail ${index + 1}" />`;
+        
+        thumbnail.addEventListener('click', () => {
+            currentImageIndex = index;
+            updateMainImage();
+            updateThumbnailsActive();
+        });
+        
+        thumbnailsContainer.appendChild(thumbnail);
+    });
+}
+
+function updateMainImage() {
+    if (!currentProject) return;
+    
+    const mainImage = document.getElementById('mainImage');
+    mainImage.src = currentProject.images[currentImageIndex];
+    mainImage.alt = `${currentProject.title} - Foto ${currentImageIndex + 1}`;
+}
+
+function updateThumbnailsActive() {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentImageIndex);
+    });
+}
+
+function changeImage(direction) {
+    if (!currentProject) return;
+    
+    currentImageIndex += direction;
+    
+    if (currentImageIndex < 0) {
+        currentImageIndex = currentProject.images.length - 1;
+    } else if (currentImageIndex >= currentProject.images.length) {
+        currentImageIndex = 0;
+    }
+    
+    updateMainImage();
+    updateThumbnailsActive();
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initPortfolioModal();
+});
+
 // SMS Consent Modal Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Consent Modal functionality
     const openConsentModal = document.getElementById('openConsentModal');
+    const openConsentModalFooter = document.getElementById('openConsentModalFooter');
     const consentModal = document.getElementById('consentModal');
     const closeConsentModal = document.getElementById('closeConsentModal');
     const acceptConsent = document.getElementById('acceptConsent');
     const declineConsent = document.getElementById('declineConsent');
     const consentCheckbox = document.getElementById('consent');
 
-    // Open modal
+    // Open modal function
+    function openModal(e) {
+        e.preventDefault();
+        consentModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Open modal events
     if (openConsentModal) {
-        openConsentModal.addEventListener('click', function(e) {
-            e.preventDefault();
-            consentModal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        });
+        openConsentModal.addEventListener('click', openModal);
+    }
+
+    if (openConsentModalFooter) {
+        openConsentModalFooter.addEventListener('click', openModal);
     }
 
     // Close modal function
@@ -824,16 +1114,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Close on backdrop click
-    consentModal.addEventListener('click', function(e) {
-        if (e.target === consentModal) {
-            closeModal();
-        }
-    });
+    if (consentModal) {
+        consentModal.addEventListener('click', function(e) {
+            if (e.target === consentModal) {
+                closeModal();
+            }
+        });
+    }
 
     // Accept consent
     if (acceptConsent) {
         acceptConsent.addEventListener('click', function() {
-            consentCheckbox.checked = true;
+            if (consentCheckbox) {
+                consentCheckbox.checked = true;
+            }
             closeModal();
         });
     }
@@ -841,15 +1135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Decline consent
     if (declineConsent) {
         declineConsent.addEventListener('click', function() {
-            consentCheckbox.checked = false;
             closeModal();
         });
     }
-
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && consentModal.classList.contains('show')) {
-            closeModal();
-        }
-    });
 });
