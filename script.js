@@ -653,7 +653,7 @@ function initTestimonialsSlider() {
                 if (isInView && !isHovered) { // Дополнительная проверка
                     nextGroup();
                 }
-            }, 6000);
+            }, 2000);
         }
     }
 
@@ -1171,7 +1171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function resetSlideInterval() {
         clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        slideInterval = setInterval(nextSlide, 2000); // Change slide every 5 seconds
     }
 
     // Initialize slideshow
