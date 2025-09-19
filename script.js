@@ -1139,3 +1139,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Hero Slideshow functionality
+document.addEventListener('DOMContentLoaded', function() {
+    let currentSlideIndex = 0;
+    let slideInterval;
+    
+    // Получаем элементы после загрузки DOM
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+    const heroSection = document.querySelector('.hero');
+
+    function showSlide(index) {
+        // Remove active class from all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        // Add active class to current slide
+        if (slides[index]) {
+            slides[index].classList.add('active');
+        }
+    }
+
+    function nextSlide() {
+        currentSlideIndex++;
+        
+        if (currentSlideIndex >= slides.length) {
+            currentSlideIndex = 0;
+        }
+        
+        showSlide(currentSlideIndex);
+    }
+
+    function resetSlideInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    // Initialize slideshow
+    function initHeroSlideshow() {
+        if (slides.length > 0) {
+            console.log('Initializing slideshow with', slides.length, 'slides');
+            showSlide(0);
+            resetSlideInterval();
+        } else {
+            console.log('No slides found');
+        }
+    }
+
+    // Initialize slideshow
+    initHeroSlideshow();
+
+    // Pause slideshow on hover
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        heroSection.addEventListener('mouseleave', () => {
+            resetSlideInterval();
+        });
+    }
+});

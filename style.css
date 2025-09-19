@@ -337,38 +337,160 @@ button, .btn {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Добавляем центрирование */
     overflow: hidden;
-    background-image: url('assets/images/hero-background.jpg');
+}
+
+
+
+/* Hero Slideshow */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #333; /* Fallback цвет */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-slideshow .slide.active {
+    opacity: 1;
+}
+
+/* Slideshow Controls */
+.slideshow-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.slide-btn {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFD700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    backdrop-filter: blur(10px);
+}
+
+.slide-btn:hover {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #FFD700;
+    transform: scale(1.1);
+}
+
+.slide-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Slideshow Indicators */
+.slideshow-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active,
+.indicator:hover {
+    background: #FFD700;
+    border-color: #FFD700;
+    transform: scale(1.2);
+}
+
+/* Mobile Responsive for Slideshow */
+@media (max-width: 768px) {
+    .slideshow-controls {
+        padding: 0 15px;
+    }
+    
+    .slide-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .slide-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .slideshow-indicators {
+        bottom: 20px;
+        gap: 8px;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
 }
 
 .hero-container {
     display: flex;
     max-width: 1400px;
     width: 100%;
+    margin: 0 auto;
     padding: 0 2rem;
-    gap: 4rem;
+    gap: 80px; /* Принудительно убираем gap */
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 3;
     position: relative;
 }
 
 .hero-left {
     flex: 1;
     max-width: 600px;
+    padding-right: 1rem; /* Добавляем небольшой отступ справа */
 }
 
 .hero-right {
     flex: 0 0 400px;
     max-width: 400px;
+    margin-left: -2rem; /* Сдвигаем форму ближе к тексту */
 }
 
 
@@ -689,26 +811,29 @@ button, .btn {
     }
     
     .hero {
-        height: auto;
-        min-height: 600px;
-        padding: 120px 0 80px;
+        min-height: 100vh;
+        padding: 2rem 0;
     }
     
     .hero-container {
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem; /* Уменьшаем с 2rem до 1rem */
         padding: 0 1rem;
+        text-align: center; /* Центрируем текст на мобильных */
+        justify-content: center;
     }
     
     .hero-left {
         text-align: center;
         max-width: 100%;
+        order: 2; /* Перемещаем текст вниз на мобильных */
     }
     
     .hero-right {
         flex: none;
         max-width: 100%;
         width: 100%;
+        order: 1; /* Форма сверху на мобильных */
     }
     
     .hero-form {
@@ -764,8 +889,8 @@ button, .btn {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2;
 }
 
 .hero-content {
